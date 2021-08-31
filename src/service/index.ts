@@ -8,7 +8,7 @@
  */
 
 import ANRequest from "./request";
-
+import Cache from "@/utils/cache";
 import { BASE_URL, TIME_OUT } from "./request/config";
 
 const anRequest = new ANRequest({
@@ -17,7 +17,7 @@ const anRequest = new ANRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // 携带token的拦截
-      const token = "";
+      const token = Cache.getCache("token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 15:39:52
- * @LastEditTime: 2021-08-29 11:38:53
+ * @LastEditTime: 2021-08-30 13:26:39
  * @LastEditors: 安知鱼
  */
 
@@ -62,19 +62,19 @@ class ANRequest {
         // 将loading移除
         this.loading?.close();
         const data = res.data;
-        if (data.returnCode === "500") {
-          console.log("请求失败~, 请打电话叫后端，锤他");
-        } else {
-          return data;
-        }
+        // if (data.returnCode === "500") {
+        //   console.log("请求失败~, 请打电话叫后端，锤他");
+        // } else {
+        return data;
+        // }
       },
       (err) => {
         // 将loading移除
         this.loading?.close();
         // 例子: 判断不同的HttpErrorCode显示不同的错误信息
-        if (err.response.status === 404) {
-          console.log("404的错误~");
-        }
+        // if (err.response.status === 404) {
+        //   console.log("404的错误~");
+        // }
         return err;
       }
     );

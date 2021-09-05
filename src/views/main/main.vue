@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 11:45:26
- * @LastEditTime: 2021-09-05 14:51:31
+ * @LastEditTime: 2021-09-05 17:06:23
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -17,9 +17,9 @@
           <nav-header @foldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">
-          <div class="page-info">
-            <router-view></router-view>
-          </div>
+          <!-- <div class="page-info"> -->
+          <router-view></router-view>
+          <!-- </div> -->
         </el-main>
       </el-container>
     </el-container>

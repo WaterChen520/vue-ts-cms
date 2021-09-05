@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 13:10:15
- * @LastEditTime: 2021-09-05 16:00:29
+ * @LastEditTime: 2021-09-05 17:32:10
  * @LastEditors: 安知鱼
  */
 
@@ -28,6 +28,11 @@ import {
   ElMenu,
   ElDropdown,
   ElAvatar,
+  ElSelect,
+  ElDatePicker,
+  ElCard,
+  ElCol,
+  ElRow,
 } from "element-plus";
 
 const components = [
@@ -41,6 +46,11 @@ const components = [
   ElMenu,
   ElDropdown,
   ElAvatar,
+  ElSelect,
+  ElDatePicker,
+  ElCard,
+  ElCol,
+  ElRow,
 ];
 
 export default function (app: App): void {

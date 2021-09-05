@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 10:27:31
- * @LastEditTime: 2021-08-31 09:48:19
+ * @LastEditTime: 2021-09-05 13:28:51
  * @LastEditors: 安知鱼
  */
 import { Module } from "vuex";
@@ -20,6 +20,7 @@ import {
 import { IAccount } from "@/service/login/type";
 import { ILoginState } from "./type";
 import { IRootStore } from "../type";
+import { mapMenusToRoutes } from "@/utils/map-menus";
 
 const loginModule: Module<ILoginState, IRootStore> = {
   namespaced: true,
@@ -40,6 +41,13 @@ const loginModule: Module<ILoginState, IRootStore> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus;
+      // userMenes => route
+      const routes = mapMenusToRoutes(userMenus);
+
+      // 将routes => router.main.chilrden
+      routes.forEach((route) => {
+        router.addRoute("main", route);
+      });
     },
   },
   actions: {
@@ -77,7 +85,7 @@ const loginModule: Module<ILoginState, IRootStore> = {
       const userMenus = Cache.getCache("userMenus");
       if (userMenus) {
         commit("changeUserMenus", userMenus);
-        console.log(userMenus);
+        // console.log(userMenus);
       }
     },
     // phoneLoginAction({ commit }, payload: IAccount) {

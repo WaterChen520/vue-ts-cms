@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 17:20:29
- * @LastEditTime: 2021-08-31 09:49:44
+ * @LastEditTime: 2021-09-05 16:28:14
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -20,7 +20,7 @@
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
     >
-      <template v-for="item in userMenus" :key="item.id">
+      <template v-for="item in userMenus" :key="item.id + ''">
         <!-- 二级菜单 -->
         <template v-if="item.type === 1">
           <!-- 二级菜单的可以展开的标题 -->
@@ -30,17 +30,23 @@
               <span>{{ item.name }}</span>
             </template>
             <!-- 遍历里面的item -->
-            <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''">
+            <template v-for="subitem in item.children" :key="subitem.id + ''">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuItemClick(subitem)"
+              >
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
             </template>
           </el-sub-menu>
         </template>
-        <!-- 一级菜单 -->
+        <!-- 只有一级菜单 -->
         <template v-else-if="item.type === 2">
-          <el-menu-item :index="item.id + ''">
+          <el-menu-item
+            :index="item.id + ''"
+            @click="handleMenuItemClick(item)"
+          >
             <i v-if="item.icon" :class="item.icon"></i>
             <span>{{ item.name }}</span>
           </el-menu-item>
@@ -53,6 +59,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "@/store";
+import { useRouter } from "vue-router";
 
 // vuex - typescript  => pinia
 
@@ -66,8 +73,18 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const userMenus = computed(() => store.state.login.userMenus);
+    const router = useRouter();
+
+    const handleMenuItemClick = (item: any) => {
+      router.push({
+        path: item.url ?? "/not-found",
+      });
+    };
+    // console.log(userMenus);
+
     return {
       userMenus,
+      handleMenuItemClick,
     };
   },
 });
@@ -103,7 +120,7 @@ export default defineComponent({
   }
 
   // 目录
-  .el-submenu {
+  .el-sub-menu {
     background-color: #001529 !important;
     // 二级菜单 ( 默认背景 )
     .el-menu-item {
@@ -112,7 +129,7 @@ export default defineComponent({
     }
   }
 
-  :deep(.el-submenu__title) {
+  :deep(.el-sub-menu__title) {
     background-color: #001529 !important;
   }
 

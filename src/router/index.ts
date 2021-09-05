@@ -8,11 +8,23 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/login",
-    component: () => import("../views/login/login.vue"),
+    name: "login",
+    component: () => import("@/views/login/login.vue"),
   },
   {
     path: "/main",
-    component: () => import("../views/main/main.vue"),
+    name: "main",
+    component: () => import("@/views/main/main.vue"),
+  },
+  // 找不到页面
+  {
+    path: "/:pathMatch(.*)",
+    redirect: "/not-found",
+    name: "not-found",
+    meta: {
+      title: "找不到页面",
+    },
+    component: () => import("@/views/not-found/not-found.vue"),
   },
 ];
 
@@ -26,6 +38,15 @@ router.beforeEach((to) => {
     const token = Cache.getCache("token");
     if (!token) {
       return "/login";
+    }
+  }
+
+  // console.log(router.getRoutes())
+  // console.log(to)
+
+  if (to.path.indexOf("/main") !== -1) {
+    if (to.name === "notFound") {
+      to.name = "user";
     }
   }
 });

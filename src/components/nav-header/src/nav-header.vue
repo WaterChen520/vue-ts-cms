@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 17:21:27
- * @LastEditTime: 2021-09-05 15:44:48
+ * @LastEditTime: 2021-09-06 15:19:46
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -14,29 +14,47 @@
       @click="handleFoldClick"
     ></i>
     <div class="content">
-      <div>面包屑</div>
+      <an-breadcrumb :breadcrumbs="breadcrumbs" />
       <user-info />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import UserInfo from "./user-info.vue";
+
+import AnBreadcrumb from "@/base-ui/breadcrumb";
+import { pathMapBreadcrumbs } from "@/utils/map-menus";
+import { useStore } from "@/store";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   components: {
     UserInfo,
+    AnBreadcrumb,
   },
   emits: ["foldChange"],
   setup(props, { emit }) {
+    // store
+    const store = useStore();
+
     const isFold = ref(false);
     const handleFoldClick = () => {
       isFold.value = !isFold.value;
       emit("foldChange", isFold.value);
     };
 
+    // 面包屑数据: [{name: "首页", path: "/main"}]
+    const breadcrumbs = computed(() => {
+      const route = useRoute();
+      const userMenus = store.state.login.userMenus;
+      const currentPath = route.path;
+      return pathMapBreadcrumbs(userMenus, currentPath);
+    });
+
     return {
+      breadcrumbs,
       isFold,
       handleFoldClick,
     };

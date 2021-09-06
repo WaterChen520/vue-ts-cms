@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
 import Cache from "@/utils/cache";
+import { firstMenu } from "@/utils/map-menus";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -44,10 +45,8 @@ router.beforeEach((to) => {
   // console.log(router.getRoutes())
   // console.log(to)
 
-  if (to.path.indexOf("/main") !== -1) {
-    if (to.name === "notFound") {
-      to.name = "user";
-    }
+  if (to.path === "/main") {
+    return firstMenu.url;
   }
 });
 

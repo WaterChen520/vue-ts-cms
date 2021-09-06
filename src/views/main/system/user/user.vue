@@ -1,18 +1,19 @@
 <template>
   <div class="user">
-    <AnForm v-bind="searchFormConfig" />
+    <page-search :searchFormConfig="searchFormConfig" />
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import AnForm from "@/base-ui/form";
+import PageSearch from "@/components/page-search";
 import { searchFormConfig } from "./config/search.config";
+
 export default defineComponent({
   name: "user",
   components: {
-    AnForm,
+    PageSearch,
   },
   setup() {
     return {
@@ -22,4 +23,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="less"></style>

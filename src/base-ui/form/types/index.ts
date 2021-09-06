@@ -3,13 +3,14 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 17:09:01
- * @LastEditTime: 2021-09-05 19:00:01
+ * @LastEditTime: 2021-09-06 15:59:01
  * @LastEditors: 安知鱼
  */
 
 type IFormType = "input" | "password" | "select" | "datepicker";
 
 export interface IFormItem {
+  field: string;
   type: IFormType;
   label: string;
   rules?: any[];

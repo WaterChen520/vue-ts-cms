@@ -3,12 +3,15 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 16:59:30
- * @LastEditTime: 2021-09-05 19:12:31
+ * @LastEditTime: 2021-09-06 17:14:59
  * @LastEditors: 安知鱼
 -->
 <template>
   <div class="an-form">
     <el-card shadow="hover">
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
       <el-form :label-width="labelWidth">
         <el-row>
           <template v-for="item in formItems" :key="item.label">
@@ -25,6 +28,7 @@
                     :placeholder="item.placeholder"
                     :show-password="item.type === 'password'"
                     v-bind="item.otherOptions"
+                    v-model="formData[`${item.field}`]"
                   />
                 </template>
                 <template v-else-if="item.type === 'select'">
@@ -32,10 +36,12 @@
                     :placeholder="item.placeholder"
                     style="width: 100%"
                     v-bind="item.otherOptions"
+                    v-model="formData[`${item.field}`]"
                   >
                     <el-option
                       v-for="option in item.options"
                       :key="option.value"
+                      :label="option.title"
                       :value="option.value"
                     >
                       {{ option.title }}
@@ -46,6 +52,7 @@
                   <el-date-picker
                     style="width: 100%"
                     v-bind="item.otherOptions"
+                    v-model="formData[`${item.field}`]"
                   ></el-date-picker>
                 </template>
               </el-form-item>
@@ -53,16 +60,23 @@
           </template>
         </el-row>
       </el-form>
+      <div class="footer">
+        <slot name="footer"></slot>
+      </div>
     </el-card>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref, watch } from "vue";
 import { IFormItem } from "../types";
 
 export default defineComponent({
   props: {
+    modelValue: {
+      type: Object,
+      required: true,
+    },
     formItems: {
       type: Array as PropType<IFormItem[]>,
       default: () => [],
@@ -86,8 +100,24 @@ export default defineComponent({
       }),
     },
   },
-  setup() {
-    return {};
+  emits: ["upadate:modelValue"],
+  setup(props, { emit }) {
+    // 进行浅拷贝，不直接使用v-model绑定props.modelValue的原因是为了不修改props的引用
+    const formData = ref({ ...props.modelValue });
+
+    watch(
+      formData,
+      (newValue) => {
+        emit("upadate:modelValue", newValue);
+      },
+      {
+        deep: true,
+      }
+    );
+
+    return {
+      formData,
+    };
   },
 });
 </script>

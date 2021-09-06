@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 19:03:58
- * @LastEditTime: 2021-09-05 19:13:23
+ * @LastEditTime: 2021-09-06 16:00:52
  * @LastEditors: 安知鱼
  */
 import { IForm } from "@/base-ui/form";
@@ -18,16 +18,25 @@ export const searchFormConfig: IForm = {
   },
   formItems: [
     {
+      field: "id",
+      type: "input",
+      label: "id",
+      placeholder: "请输入id",
+    },
+    {
+      field: "name",
       type: "input",
       label: "用户名",
       placeholder: "请输入用户名",
     },
     {
+      field: "password",
       type: "password",
       label: "密码",
       placeholder: "请输入密码",
     },
     {
+      field: "spord",
       type: "select",
       label: "喜欢的角色",
       placeholder: "请输入喜欢的角色",
@@ -37,6 +46,7 @@ export const searchFormConfig: IForm = {
       ],
     },
     {
+      field: "createTime",
       type: "datepicker",
       label: "创建时间",
       otherOptions: {

@@ -3,12 +3,22 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-01 08:33:41
- * @LastEditTime: 2021-09-05 12:57:49
+ * @LastEditTime: 2021-09-06 15:40:59
  * @LastEditors: 安知鱼
  */
 
+import { IBreadcrumb } from "@/base-ui/breadcrumb";
 import { RouteRecordRaw } from "vue-router";
 
+let firstMenu: any = null;
+
+/**
+ * @Description: 映射路由，动态注册路由
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ * @param {any} userMenus
+ */
 export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = [];
   // 1.先加载默认所有的路由routes
@@ -40,6 +50,10 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
       if (menu.type === 2) {
         const route = allRoutes.find((route) => route.path === menu.url);
         if (route) routes.push(route);
+        // 保存第一个路由，方便首页重定向至第一个路由，防止侧边栏找不到id
+        if (!firstMenu) {
+          firstMenu = menu;
+        }
       } else {
         _recurseGetRoute(menu.children);
       }
@@ -50,3 +64,48 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
 
   return routes;
 }
+
+/**
+ * @Description: 映射面包屑
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ * @param {any} userMenus
+ * @param {string} currentPath
+ */
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: IBreadcrumb[] = [];
+  pathMapToMenu(userMenus, currentPath, breadcrumbs);
+  return breadcrumbs;
+}
+
+/**
+ * @Description: 保存当前路由，防止刷新侧边栏激活状态丢失
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ * @param {any} userMenus
+ * @param {string} currentPath
+ */
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      const findMenu = pathMapToMenu(menu.children ?? [], currentPath);
+      if (findMenu) {
+        breadcrumbs?.push({ name: menu.name });
+        // 找到的最后一级路由
+        breadcrumbs?.push({ name: findMenu.name, path: findMenu.url });
+        return findMenu;
+      }
+    } else if (menu.type === 2 && menu.url === currentPath) {
+      breadcrumbs?.push({ name: menu.name, path: menu.url });
+      return menu;
+    }
+  }
+}
+
+export { firstMenu };

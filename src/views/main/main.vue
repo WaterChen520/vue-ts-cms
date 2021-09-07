@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 11:45:26
- * @LastEditTime: 2021-09-07 09:00:58
+ * @LastEditTime: 2021-09-07 09:06:15
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -103,7 +103,6 @@ export default defineComponent({
 
 .el-main {
   color: #333;
-
   text-align: center;
   background-color: #f0f2f5;
 }

@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 13:10:15
- * @LastEditTime: 2021-09-06 17:29:39
+ * @LastEditTime: 2021-09-07 15:24:05
  * @LastEditors: 安知鱼
  */
 
@@ -40,6 +40,7 @@ export default (app: App): void => {
 //   ElCol,
 //   ElRow,
 //   ElBreadcrumb,
+//   ElTable,
 // } from "element-plus";
 
 // const components = [
@@ -59,6 +60,7 @@ export default (app: App): void => {
 //   ElCol,
 //   ElRow,
 //   ElBreadcrumb,
+//   ElTable,
 // ];
 
 // export default function (app: App): void {

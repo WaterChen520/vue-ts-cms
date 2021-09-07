@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 15:39:52
- * @LastEditTime: 2021-08-30 13:26:39
+ * @LastEditTime: 2021-09-07 15:00:08
  * @LastEditors: 安知鱼
  */
 
@@ -80,7 +80,7 @@ class ANRequest {
     );
   }
 
-  request<T>(config: ANRequestConfig<T>): Promise<T> {
+  request<T = any>(config: ANRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 1.单个请求对请求config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -114,19 +114,19 @@ class ANRequest {
     });
   }
 
-  get<T>(config: ANRequestConfig<T>): Promise<T> {
+  get<T = any>(config: ANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "GET" });
   }
 
-  post<T>(config: ANRequestConfig<T>): Promise<T> {
+  post<T = any>(config: ANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "POST" });
   }
 
-  delete<T>(config: ANRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: ANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "DELETE" });
   }
 
-  patch<T>(config: ANRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: ANRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: "PATCH" });
   }
 }

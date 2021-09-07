@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 16:59:30
- * @LastEditTime: 2021-09-06 17:14:59
+ * @LastEditTime: 2021-09-07 15:54:06
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -122,8 +122,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="less">
-.an-form {
-  padding-top: 22px;
-}
-</style>
+<style scoped lang="less"></style>

@@ -3,12 +3,13 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 12:58:50
- * @LastEditTime: 2021-09-05 13:10:46
+ * @LastEditTime: 2021-09-07 15:03:16
  * @LastEditors: 安知鱼
  */
 import anRequest from "../index";
 
-import { IAccount, IDataType, ILoginResult } from "./type";
+import { IAccount, ILoginResult } from "./type";
+import { IDataType } from "../types";
 
 enum LoginAPI {
   AccountLogin = "/login",

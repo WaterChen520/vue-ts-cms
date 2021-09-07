@@ -1,9 +1,10 @@
+import { ISystemState } from "./main/system/types";
 /*
  * @Description: store类型定义文件
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 10:32:57
- * @LastEditTime: 2021-09-06 10:59:03
+ * @LastEditTime: 2021-09-07 14:04:15
  * @LastEditors: 安知鱼
  */
 import { ILoginState } from "./login/type";
@@ -17,6 +18,7 @@ export interface IRootStore {
 // vue-x中子模块类型
 export interface IRootWithModule {
   login: ILoginState;
+  system: ISystemState;
 }
 
 // 自定义的Store类型

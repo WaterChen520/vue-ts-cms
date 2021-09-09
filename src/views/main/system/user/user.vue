@@ -37,7 +37,7 @@ export default defineComponent({
     });
 
     const userList = computed(() => store.state.system.userList);
-    const userCount = computed(() => store.state.system.userCount);
+    // const userCount = computed(() => store.state.system.userCount);
     console.log(userList);
 
     const propList = [

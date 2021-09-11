@@ -19,9 +19,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   // 找不到页面
   {
-    path: "/:pathMatch(.*)",
-    redirect: "/not-found",
-    name: "not-found",
+    path: "/:pathMatch(.*)*",
+    name: "notFound",
     meta: {
       title: "找不到页面",
     },

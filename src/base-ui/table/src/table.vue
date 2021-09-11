@@ -3,23 +3,64 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 15:35:21
- * @LastEditTime: 2021-09-07 16:27:59
+ * @LastEditTime: 2021-09-10 11:09:13
  * @LastEditors: 安知鱼
 -->
 <template>
   <div class="an-table">
     <el-card shadow="hover">
-      <el-table :data="listData" border style="width: 100%">
+      <div class="header">
+        <slot name="header">
+          <div class="title">{{ title }}</div>
+          <div class="handler">
+            <slot name="headerHandler"></slot>
+          </div>
+        </slot>
+      </div>
+      <el-table
+        :data="listData"
+        border
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column
+          v-if="showSelectColumn"
+          type="selection"
+        ></el-table-column>
+        <el-table-column
+          v-if="showIndexColumn"
+          type="index"
+          label="序号"
+          align="center"
+          width="60"
+        ></el-table-column>
         <template v-for="propItem in propList" :key="propItem.prop">
-          <el-table-column v-bind="propItem" align="center">
+          <el-table-column
+            v-bind="propItem"
+            :align="`${propItem.align ? propItem.align : 'center'}`"
+          >
             <template #default="scope">
-              <slot :name="propItem.soltName" :row="scope.row">
+              <slot :name="propItem.slotName" :row="scope.row">
                 {{ scope.row[propItem.prop] }}
               </slot>
             </template>
           </el-table-column>
         </template>
       </el-table>
+      <div class="footer">
+        <slot name="footer">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400"
+          >
+          </el-pagination>
+        </slot>
+      </div>
     </el-card>
   </div>
 </template>
@@ -29,6 +70,10 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   props: {
+    title: {
+      type: String,
+      default: "",
+    },
     propList: {
       type: Array,
       required: true,
@@ -37,11 +82,50 @@ export default defineComponent({
       type: Array,
       required: true,
     },
+    showIndexColumn: {
+      type: Boolean,
+      default: false,
+    },
+    showSelectColumn: {
+      type: Boolean,
+      default: false,
+    },
   },
-  setup() {
-    return {};
+  emits: ["selectionChange"],
+  setup(props, { emit }) {
+    const handleSelectionChange = (value: any) => {
+      emit("selectionChange", value);
+    };
+    return {
+      handleSelectionChange,
+    };
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.header {
+  display: flex;
+  height: 45px;
+  padding: 0 5px;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .handler {
+    align-items: center;
+  }
+}
+
+.footer {
+  margin-top: 15px;
+
+  .el-pagination {
+    text-align: right;
+  }
+}
+</style>

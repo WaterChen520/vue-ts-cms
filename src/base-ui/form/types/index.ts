@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 17:09:01
- * @LastEditTime: 2021-09-06 15:59:01
+ * @LastEditTime: 2021-09-10 16:30:58
  * @LastEditors: 安知鱼
  */
 
@@ -26,6 +26,6 @@ export interface IFormItem {
 export interface IForm {
   formItems: IFormItem[];
   labelWidth?: string;
-  colLayout: any;
-  itemLayout: any;
+  colLayout?: any;
+  itemLayout?: any;
 }

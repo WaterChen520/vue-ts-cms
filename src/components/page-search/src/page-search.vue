@@ -3,18 +3,23 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-06 16:59:13
- * @LastEditTime: 2021-09-10 16:56:11
+ * @LastEditTime: 2021-09-11 14:36:59
  * @LastEditors: 安知鱼
 -->
 <template>
   <div class="page-search">
-    <AnForm v-bind="searchFormConfig" v-model="formData">
+    <AnForm v-bind="searchFormConfig" v-model="formData" ref="anForm">
       <template #header>
         <h2>高级检索</h2>
       </template>
       <template #footer>
         <div class="handle-btns">
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button
+            type="primary"
+            icon="el-icon-search"
+            @click="handleQueryClick"
+            >搜索</el-button
+          >
           <el-button icon="el-icon-refresh-right" @click="handleResetClick"
             >重置</el-button
           >
@@ -38,7 +43,8 @@ export default defineComponent({
   components: {
     AnForm,
   },
-  setup(props) {
+  emits: ["resetBtnClick", "queryBtnClick"],
+  setup(props, { emit }) {
     // 双向绑定的属性应该是由配置文件的field来决定
     // 1.优化一：formData中的属性应该动态来决定
     const formItems = props.searchFormConfig?.formItems ?? [];
@@ -49,12 +55,30 @@ export default defineComponent({
     const formData = ref(formOriginData);
 
     // 2.优化二：当用户点击重置
+    const anForm = ref<InstanceType<typeof AnForm>>();
     const handleResetClick = () => {
-      formData.value = formOriginData;
+      // 这样修改是不能修改的，改不了浅拷贝出来的对象，得修改formDate内部的值
+      // formData.value = formOriginData;
+      // 比如这样:
+      // 方法一：
+      // for (const key in formOriginData) {
+      //   formData.value[`${key}`] = formOriginData[key];
+      // }
+      // 方法二：
+      // formData.value = formOriginData;
+      // 方法三：
+      anForm.value?.formRef?.resetFields();
+      emit("resetBtnClick");
+    };
+    // 3.优化三：当用户点击搜索
+    const handleQueryClick = () => {
+      emit("queryBtnClick", formData.value);
     };
     return {
+      anForm,
       formData,
       handleResetClick,
+      handleQueryClick,
     };
   },
 });

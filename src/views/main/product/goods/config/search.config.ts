@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 19:03:58
- * @LastEditTime: 2021-09-11 13:59:11
+ * @LastEditTime: 2021-09-11 16:46:10
  * @LastEditors: 安知鱼
  */
 import { IForm } from "@/base-ui/form";
@@ -20,14 +20,14 @@ export const searchFormConfig: IForm = {
     {
       field: "name",
       type: "input",
-      label: "用户名",
-      placeholder: "请输入用户名",
+      label: "商品名称",
+      placeholder: "请输入商品名称",
     },
     {
-      field: "realname",
+      field: "oldPrice",
       type: "input",
-      label: "真实姓名",
-      placeholder: "请输入真实姓名",
+      label: "原价格",
+      placeholder: "请输入真原价格",
     },
     {
       field: "cellphone",
@@ -36,10 +36,10 @@ export const searchFormConfig: IForm = {
       placeholder: "请输入电话号码",
     },
     {
-      field: "enable",
+      field: "status",
       type: "select",
-      label: "用户状态",
-      placeholder: "请选择用户状态",
+      label: "商品状态",
+      placeholder: "请选择商品状态",
       options: [
         { title: "启用", value: 1 },
         { title: "禁用", value: 0 },

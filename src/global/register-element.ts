@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 13:10:15
- * @LastEditTime: 2021-09-10 11:09:35
+ * @LastEditTime: 2021-09-11 17:07:01
  * @LastEditors: 安知鱼
  */
 
@@ -42,6 +42,8 @@ import {
   ElBreadcrumb,
   ElTable,
   ElPagination,
+  ElLoading,
+  ElImage,
 } from "element-plus";
 
 const components = [
@@ -63,6 +65,8 @@ const components = [
   ElBreadcrumb,
   ElTable,
   ElPagination,
+  ElImage,
+  ElLoading,
 ];
 
 export default function (app: App): void {

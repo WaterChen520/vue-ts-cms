@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 09:33:00
- * @LastEditTime: 2021-09-10 09:48:06
+ * @LastEditTime: 2021-09-11 09:36:47
  * @LastEditors: 安知鱼
  */
 import dayjs from "dayjs";
@@ -11,6 +11,12 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 const DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
 
+/**
+ * @Description: 格式化utc时间
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ */
 export function formatUtcString(
   utcString: string,
   format: string = DATE_TIME_FORMAT
@@ -18,6 +24,12 @@ export function formatUtcString(
   return dayjs.utc(utcString).format(format);
 }
 
+/**
+ * @Description: 格式化时间戳
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ */
 export function formatTimestamp(
   timestamp: number,
   format: string = DATE_TIME_FORMAT

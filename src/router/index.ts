@@ -19,12 +19,16 @@ const routes: Array<RouteRecordRaw> = [
   },
   // 找不到页面
   {
-    path: "/:pathMatch(.*)*",
+    path: "/404",
     name: "notFound",
     meta: {
       title: "找不到页面",
     },
     component: () => import("@/views/not-found/not-found.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)",
+    redirect: "/404",
   },
 ];
 

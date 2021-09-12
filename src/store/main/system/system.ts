@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 13:48:26
- * @LastEditTime: 2021-09-10 16:40:53
+ * @LastEditTime: 2021-09-12 12:03:06
  * @LastEditors: 安知鱼
  */
 
@@ -20,6 +20,10 @@ const systemModule: Module<ISystemState, IRootStore> = {
       usersCount: 0,
       roleList: [],
       roleCount: 0,
+      goodsList: [],
+      goodsCount: 0,
+      menuList: [],
+      menuCount: 0,
     };
   },
   mutations: {
@@ -32,8 +36,20 @@ const systemModule: Module<ISystemState, IRootStore> = {
     changeRoleList(state, roleList: any[]) {
       state.roleList = roleList;
     },
-    changeRloeCount(state, roleCount: number) {
+    changeRoleCount(state, roleCount: number) {
       state.roleCount = roleCount;
+    },
+    changeGoodsList(state, goodsList: any[]) {
+      state.goodsList = goodsList;
+    },
+    changeGoodsCount(state, goodsCount: number) {
+      state.goodsCount = goodsCount;
+    },
+    changeMenuList(state, menuList: any[]) {
+      state.menuList = menuList;
+    },
+    changeMenuCount(state, menuCount: number) {
+      state.menuCount = menuCount;
     },
   },
   getters: {
@@ -48,9 +64,16 @@ const systemModule: Module<ISystemState, IRootStore> = {
         // }
       };
     },
+    pageListCount(state) {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}Count`];
+      };
+    },
   },
   actions: {
     async getPageListAction({ commit }, payload: any) {
+      // console.log(payload);
+
       // 1.获取pageUrl
       const pageName = payload.pageName;
       const pageUrl = `${pageName}/list`;
@@ -65,6 +88,7 @@ const systemModule: Module<ISystemState, IRootStore> = {
       // }
       // 2.对页面发送请求
       const pageResult = await getPageListData(pageUrl, payload.queryInfo);
+      console.log(pageResult);
 
       // 3.将数据存储到state中
       const { list, totalCount } = pageResult.data;

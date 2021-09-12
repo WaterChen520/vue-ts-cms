@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 10:27:31
- * @LastEditTime: 2021-09-05 13:28:51
+ * @LastEditTime: 2021-09-12 12:41:28
  * @LastEditors: 安知鱼
  */
 import { Module } from "vuex";
@@ -20,7 +20,7 @@ import {
 import { IAccount } from "@/service/login/type";
 import { ILoginState } from "./type";
 import { IRootStore } from "../type";
-import { mapMenusToRoutes } from "@/utils/map-menus";
+import { mapMenusToRoutes, mapMenusTOPermissions } from "@/utils/map-menus";
 
 const loginModule: Module<ILoginState, IRootStore> = {
   namespaced: true,
@@ -29,6 +29,7 @@ const loginModule: Module<ILoginState, IRootStore> = {
       token: "",
       userInfo: {},
       userMenus: [],
+      permissions: [],
     };
   },
   getters: {},
@@ -48,6 +49,10 @@ const loginModule: Module<ILoginState, IRootStore> = {
       routes.forEach((route) => {
         router.addRoute("main", route);
       });
+
+      // 获取用户按钮权限
+      const permissions = mapMenusTOPermissions(userMenus);
+      state.permissions = permissions;
     },
   },
   actions: {

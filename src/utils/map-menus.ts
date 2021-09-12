@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-01 08:33:41
- * @LastEditTime: 2021-09-06 15:40:59
+ * @LastEditTime: 2021-09-12 12:39:29
  * @LastEditors: 安知鱼
  */
 
@@ -106,6 +106,30 @@ export function pathMapToMenu(
       return menu;
     }
   }
+}
+
+/**
+ * @Description: 递归获取按钮权限(type : 3的菜单)
+ * @Author: 安知鱼
+ * @param  {*}
+ * @return {*}
+ * @param {any} userMenus
+ */
+export function mapMenusTOPermissions(userMenus: any[]) {
+  const permissions: string[] = [];
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? []);
+      } else if (menu.type === 3) {
+        permissions.push(menu.permission);
+      }
+    }
+  };
+
+  _recurseGetPermission(userMenus);
+  return permissions;
 }
 
 export { firstMenu };

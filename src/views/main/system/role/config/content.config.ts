@@ -3,12 +3,15 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 16:09:43
- * @LastEditTime: 2021-09-12 13:17:35
+ * @LastEditTime: 2021-09-12 14:55:54
  * @LastEditors: 安知鱼
  */
 export const contentTableConfig = {
   title: "角色列表",
-  increaseTitle: "新建角色",
+  headerHandler: {
+    increase: "新建角色",
+    removeAll: "批量删除",
+  },
   propList: [
     { prop: "name", label: "角色名", minWidth: "100", slotName: "name" },
     {

@@ -3,13 +3,16 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 15:02:21
- * @LastEditTime: 2021-09-12 13:16:40
+ * @LastEditTime: 2021-09-13 09:20:47
  * @LastEditors: 安知鱼
  */
 
 export const contentTableConfig = {
   title: "用户列表",
-  increaseTitle: "新建用户",
+  headerHandler: {
+    increase: "新建用户",
+    removeAll: "批量删除",
+  },
   propList: [
     { prop: "name", label: "用户名", minWidth: "100", slotName: "name" },
     { prop: "realname", label: "真实姓名", minWidth: "100" },

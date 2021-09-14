@@ -3,14 +3,14 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-05 19:03:58
- * @LastEditTime: 2021-09-12 11:48:37
+ * @LastEditTime: 2021-09-12 18:10:20
  * @LastEditors: 安知鱼
  */
 import { IForm } from "@/base-ui/form";
 
 export const searchFormConfig: IForm = {
   labelWidth: "100px",
-  itemLayout: {
+  itemStyle: {
     padding: "10px 20px",
   },
   colLayout: {

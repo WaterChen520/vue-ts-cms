@@ -3,14 +3,21 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 13:48:26
- * @LastEditTime: 2021-09-12 12:03:06
+ * @LastEditTime: 2021-09-13 16:17:33
  * @LastEditors: 安知鱼
  */
 
 import { Module } from "vuex";
 import { IRootStore } from "./../../type";
 import { ISystemState } from "./types";
-import { getPageListData } from "@/service/main/system/system";
+import {
+  editPageData,
+  createPageData,
+  deletePageData,
+  getPageListData,
+} from "@/service/main/system/system";
+
+import { ElMessage } from "element-plus";
 
 const systemModule: Module<ISystemState, IRootStore> = {
   namespaced: true,
@@ -108,6 +115,71 @@ const systemModule: Module<ISystemState, IRootStore> = {
       //     commit(`changeRoleCount`, totalCount)
       //     break
       // }
+    },
+    async deletePageDataAction({ dispatch, rootState }, payload: any) {
+      // 1.获取pageName和id
+      // pageName -> /users
+      // id -> /users/id
+      const { pageName, id } = payload;
+      const pageUrl = `/${pageName}/${id}`;
+
+      // 2.调用删除网络请求
+      await deletePageData(pageUrl);
+      ElMessage({
+        type: "success",
+        message: "删除成功!",
+      });
+
+      // 3.重新请求最新的数据
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10,
+          ...rootState.queryInfo,
+        },
+      });
+    },
+    async createPageDataAction({ dispatch, rootState }, payload: any) {
+      // 1.创建数据的请求
+      const { pageName, newData } = payload;
+      const pageUrl = `/${pageName}`;
+      await createPageData(pageUrl, newData);
+      ElMessage({
+        type: "success",
+        message: "增加成功!",
+      });
+
+      // 2.请求最新的数据
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10,
+          ...rootState.queryInfo,
+        },
+      });
+    },
+
+    async editPageDataAction({ dispatch, rootState }, payload: any) {
+      // 1.编辑数据的请求
+      const { pageName, editData, id } = payload;
+      const pageUrl = `/${pageName}/${id}`;
+      await editPageData(pageUrl, editData);
+      ElMessage({
+        type: "success",
+        message: "编辑成功!",
+      });
+
+      // 2.请求最新的数据
+      dispatch("getPageListAction", {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10,
+          ...rootState.queryInfo,
+        },
+      });
     },
   },
 };

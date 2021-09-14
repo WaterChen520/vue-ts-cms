@@ -3,13 +3,16 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 15:02:21
- * @LastEditTime: 2021-09-12 13:17:07
+ * @LastEditTime: 2021-09-13 09:20:45
  * @LastEditors: 安知鱼
  */
 
 export const contentTableConfig = {
   title: "商品列表",
-  increaseTitle: "新建商品",
+  headerHandler: {
+    increase: "新建商品",
+    removeAll: "批量删除",
+  },
   propList: [
     { prop: "name", label: "商品名称", minWidth: "80" },
     { prop: "oldPrice", label: "原价格", minWidth: "80", slotName: "oldPrice" },

@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 15:08:23
- * @LastEditTime: 2021-09-12 13:31:38
+ * @LastEditTime: 2021-09-13 14:11:12
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -13,11 +13,30 @@
       :listCount="dataCount"
       v-bind="contentTableConfig"
       v-model:page="pageInfo"
+      @selectionChange="selectionChange"
     >
       <!-- 1.head中的插槽 -->
-      <template #headerHandler v-if="contentTableConfig.increaseTitle">
-        <el-button type="primary" size="medium" v-if="isCreate">
-          {{ contentTableConfig.increaseTitle }}
+      <template #headerHandler v-if="contentTableConfig.headerHandler">
+        <el-button
+          type="primary"
+          size="medium"
+          v-if="isCreate && contentTableConfig.headerHandler.increase"
+          @click="handleNewClick"
+        >
+          {{ contentTableConfig.headerHandler.increase }}
+        </el-button>
+
+        <el-button
+          type="danger"
+          size="medium"
+          v-if="
+            isDelete &&
+            contentTableConfig.headerHandler.removeAll &&
+            contentTableConfig.showSelectColumn
+          "
+          @click="handleDeleteClick()"
+        >
+          {{ contentTableConfig.headerHandler.removeAll }}
         </el-button>
       </template>
 
@@ -28,9 +47,14 @@
       <template #updateAt="scope">
         <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
       </template>
-      <template #handler>
+      <template #handler="scope">
         <div class="handle-btns">
-          <el-button icon="el-icon-edit" size="mini" type="text" v-if="isUpdate"
+          <el-button
+            icon="el-icon-edit"
+            size="mini"
+            type="text"
+            v-if="isUpdate"
+            @click="handleEditClick(scope.row)"
             >编辑</el-button
           >
           <el-button
@@ -38,6 +62,7 @@
             size="mini"
             type="text"
             v-if="isDelete"
+            @click="handleDeleteClick(scope.row.id)"
             >删除</el-button
           >
         </div>
@@ -57,10 +82,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch } from "vue";
+import { defineComponent, computed, ref, watch, reactive } from "vue";
 import { useStore } from "@/store";
 import { usePermission } from "@/hooks/use-permissions";
 
+import { ElMessage } from "element-plus";
+import { ElMessageBox } from "element-plus";
 import AnTable from "@/base-ui/table";
 
 export default defineComponent({
@@ -77,9 +104,17 @@ export default defineComponent({
       required: true,
     },
   },
-
-  setup(props) {
+  emits: ["newBtnClick", "editBtnClick"],
+  setup(props, { emit }) {
     const store = useStore();
+    // 获取操作的id集合
+    let selectionsIds: any = reactive([]);
+    const selectionChange = (value: any) => {
+      selectionsIds = [];
+      for (const key of value) {
+        selectionsIds.push(key.id);
+      }
+    };
 
     // 1. 获取操作权限
     const isCreate = usePermission(props.pageName, "create");
@@ -123,7 +158,38 @@ export default defineComponent({
       }
     );
 
+    // 6.删除/编辑/新建操作
+    const handleDeleteClick = (itemId: number) => {
+      if (!itemId && selectionsIds.length === 0) {
+        ElMessage.error("请先选择需要删除的数据！");
+        return;
+      }
+      ElMessageBox.confirm("将删除该数据, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          let deleteIds = itemId ?? selectionsIds;
+          console.log(deleteIds);
+          store.dispatch("system/deletePageDataAction", {
+            pageName: props.pageName,
+            id: deleteIds,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          ElMessage({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    };
+    const handleNewClick = () => emit("newBtnClick");
+    const handleEditClick = (item: any) => emit("editBtnClick", item);
+
     return {
+      selectionsIds,
       pageInfo,
       dataList,
       dataCount,
@@ -131,6 +197,10 @@ export default defineComponent({
       isCreate,
       isUpdate,
       isDelete,
+      handleDeleteClick,
+      handleNewClick,
+      handleEditClick,
+      selectionChange,
       getPageData,
     };
   },

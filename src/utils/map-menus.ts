@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-01 08:33:41
- * @LastEditTime: 2021-09-12 12:39:29
+ * @LastEditTime: 2021-09-14 13:31:14
  * @LastEditors: 安知鱼
  */
 
@@ -115,7 +115,7 @@ export function pathMapToMenu(
  * @return {*}
  * @param {any} userMenus
  */
-export function mapMenusTOPermissions(userMenus: any[]) {
+export function mapMenusToPermissions(userMenus: any[]) {
   const permissions: string[] = [];
 
   const _recurseGetPermission = (menus: any[]) => {
@@ -130,6 +130,24 @@ export function mapMenusTOPermissions(userMenus: any[]) {
 
   _recurseGetPermission(userMenus);
   return permissions;
+}
+
+export function menuMapLeafKeys(menuList: any[]) {
+  const leftKeys: number[] = [];
+
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children);
+      } else {
+        leftKeys.push(menu.id);
+      }
+    }
+  };
+
+  _recurseGetLeaf(menuList);
+
+  return leftKeys;
 }
 
 export { firstMenu };

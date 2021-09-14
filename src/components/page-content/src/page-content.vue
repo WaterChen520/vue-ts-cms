@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 15:08:23
- * @LastEditTime: 2021-09-13 14:11:12
+ * @LastEditTime: 2021-09-14 09:30:26
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -42,10 +42,12 @@
 
       <!-- 2.列中的插槽 -->
       <template #createAt="scope">
-        <span>{{ $filters.formatTime(scope.row.createAt, "YYYY-MM-DD") }}</span>
+        <span>{{
+          $filters.formatTimeUtc(scope.row.createAt, "YYYY-MM-DD HH:mm:ss")
+        }}</span>
       </template>
       <template #updateAt="scope">
-        <span>{{ $filters.formatTime(scope.row.updateAt) }}</span>
+        <span>{{ $filters.formatTimeUtc(scope.row.updateAt) }}</span>
       </template>
       <template #handler="scope">
         <div class="handle-btns">
@@ -151,7 +153,7 @@ export default defineComponent({
     // 5.获取其他的动态插槽名称
     const otherPropSlots = props.contentTableConfig?.propList.filter(
       (item: any) => {
-        if (item.slotName === "creatAt") return false;
+        if (item.slotName === "createAt") return false;
         if (item.slotName === "updateAt") return false;
         if (item.slotName === "handler") return false;
         return true;

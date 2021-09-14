@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 10:27:31
- * @LastEditTime: 2021-09-12 12:41:28
+ * @LastEditTime: 2021-09-14 13:44:09
  * @LastEditors: 安知鱼
  */
 import { Module } from "vuex";
@@ -20,7 +20,7 @@ import {
 import { IAccount } from "@/service/login/type";
 import { ILoginState } from "./type";
 import { IRootStore } from "../type";
-import { mapMenusToRoutes, mapMenusTOPermissions } from "@/utils/map-menus";
+import { mapMenusToRoutes, mapMenusToPermissions } from "@/utils/map-menus";
 
 const loginModule: Module<ILoginState, IRootStore> = {
   namespaced: true,
@@ -51,37 +51,41 @@ const loginModule: Module<ILoginState, IRootStore> = {
       });
 
       // 获取用户按钮权限
-      const permissions = mapMenusTOPermissions(userMenus);
+      const permissions = mapMenusToPermissions(userMenus);
       state.permissions = permissions;
     },
   },
   actions: {
-    async accountLoginAction({ commit }, payload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, payload: IAccount) {
       // 1. 实现账号密码登录逻辑
       const loginResult = await accountLoginRequest(payload);
       const { id, token } = loginResult.data;
       commit("changeToken", token);
       Cache.setCache("token", token);
 
-      // 2.请求用户信息
+      // 2. 发送初始化的请求
+      dispatch("getInitialDataAction", null, { root: true });
+
+      // 3.请求用户信息
       const userInfoResult = await requestUserInfoById(id);
       const userInfo = userInfoResult.data;
       commit("changeUserInfo", userInfo);
       Cache.setCache("userInfo", userInfo);
 
-      // 3.请求用户菜单
+      // 4.请求用户菜单
       const userMenusResult = await requestUserMenusById(userInfo.role.id);
       const userMenus = userMenusResult.data;
       commit("changeUserMenus", userMenus);
       Cache.setCache("userMenus", userMenus);
 
-      // 4.跳转首页
+      // 5.跳转首页
       router.push("/main");
     },
-    loadLocalLogin({ commit }) {
+    loadLocalLogin({ commit, dispatch }) {
       const token = Cache.getCache("token");
       if (token) {
         commit("changeToken", token);
+        dispatch("getInitialDataAction", null, { root: true });
       }
       const userInfo = Cache.getCache("userInfo");
       if (userInfo) {

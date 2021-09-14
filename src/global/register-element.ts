@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 13:10:15
- * @LastEditTime: 2021-09-13 10:42:38
+ * @LastEditTime: 2021-09-14 10:53:34
  * @LastEditors: 安知鱼
  */
 
@@ -46,6 +46,7 @@ import {
   ElImage,
   ElMessage,
   ElDialog,
+  ElTree,
 } from "element-plus";
 
 const components = [
@@ -69,6 +70,7 @@ const components = [
   ElPagination,
   ElImage,
   ElDialog,
+  ElTree,
   ElMessage,
   ElLoading,
 ];

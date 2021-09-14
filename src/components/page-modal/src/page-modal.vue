@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-13 13:12:27
- * @LastEditTime: 2021-09-13 16:24:08
+ * @LastEditTime: 2021-09-14 11:22:45
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -16,6 +16,7 @@
       destroy-on-close
     >
       <hy-form v-bind="modalConfig" v-model="formData"></hy-form>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
@@ -51,6 +52,10 @@ export default defineComponent({
       type: String,
       require: true,
     },
+    otherInfo: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   setup(props) {
     const dialogTitle = ref("标题");
@@ -74,14 +79,14 @@ export default defineComponent({
         // 编辑
         store.dispatch("system/editPageDataAction", {
           pageName: props.pageName,
-          editData: { ...formData.value },
+          editData: { ...formData.value, ...props.otherInfo },
           id: props.defaultInfo.id,
         });
       } else {
         // 新建
         store.dispatch("system/createPageDataAction", {
           pageName: props.pageName,
-          newData: { ...formData.value },
+          newData: { ...formData.value, ...props.otherInfo },
         });
       }
     };

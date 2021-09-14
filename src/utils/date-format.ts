@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 09:33:00
- * @LastEditTime: 2021-09-11 09:36:47
+ * @LastEditTime: 2021-09-14 09:16:16
  * @LastEditors: 安知鱼
  */
 import dayjs from "dayjs";
@@ -21,7 +21,7 @@ export function formatUtcString(
   utcString: string,
   format: string = DATE_TIME_FORMAT
 ) {
-  return dayjs.utc(utcString).format(format);
+  return dayjs.utc(utcString).utcOffset(8).format(format);
 }
 
 /**

@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 15:39:52
- * @LastEditTime: 2021-09-07 15:00:08
+ * @LastEditTime: 2021-09-14 14:21:11
  * @LastEditors: 安知鱼
  */
 
@@ -14,7 +14,7 @@ import type { ANRequestInterceptors, ANRequestConfig } from "./type";
 import { ElLoading } from "element-plus";
 import { ILoadingInstance } from "element-plus/lib/components/loading/src/loading.type";
 
-const DEAFULT_LOADING = true;
+const DEAFULT_LOADING = false;
 
 class ANRequest {
   instance: AxiosInstance;
@@ -42,7 +42,8 @@ class ANRequest {
 
     // 2.添加所有的实例都有的拦截器
     this.instance.interceptors.request.use(
-      (config) => {
+      (config: ANRequestConfig<any>) => {
+        this.showLoading = config.showLoading ?? DEAFULT_LOADING;
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,

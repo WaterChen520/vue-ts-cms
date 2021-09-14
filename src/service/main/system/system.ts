@@ -3,14 +3,14 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 14:33:55
- * @LastEditTime: 2021-09-13 16:06:36
+ * @LastEditTime: 2021-09-14 14:13:13
  * @LastEditors: 安知鱼
  */
 import anRequest from "@/service/index";
 import { IDataType } from "../../types";
 
 /**
- * @Description: 获取表格数据接口
+ * @Description: 获取数据接口
  * @Author: 安知鱼
  * @param  {*}
  * @return {*}

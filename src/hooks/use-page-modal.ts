@@ -3,13 +3,13 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-13 13:45:46
- * @LastEditTime: 2021-09-13 14:37:37
+ * @LastEditTime: 2021-09-14 10:43:05
  * @LastEditors: 安知鱼
  */
 import { ref } from "vue";
 import PageModal from "@/components/page-modal";
 
-type CallbackFn = () => void;
+type CallbackFn = (item?: any) => void;
 
 export function usePageModal(
   Title: string,
@@ -33,7 +33,7 @@ export function usePageModal(
       pageModalRef.value!.dialogTitle = "编辑" + Title;
     }
 
-    editCb && editCb();
+    editCb && editCb(item);
   };
   return [pageModalRef, defaultInfo, handleNewData, handleEditData];
 }

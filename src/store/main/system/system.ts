@@ -3,13 +3,13 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 13:48:26
- * @LastEditTime: 2021-09-13 16:17:33
+ * @LastEditTime: 2021-09-14 11:43:21
  * @LastEditors: 安知鱼
  */
 
 import { Module } from "vuex";
 import { IRootStore } from "./../../type";
-import { ISystemState } from "./types";
+import { ISystemState, IPagePayload } from "./types";
 import {
   editPageData,
   createPageData,
@@ -78,12 +78,9 @@ const systemModule: Module<ISystemState, IRootStore> = {
     },
   },
   actions: {
-    async getPageListAction({ commit }, payload: any) {
-      // console.log(payload);
-
+    async getPageListAction({ commit }, payload: IPagePayload) {
       // 1.获取pageUrl
       const pageName = payload.pageName;
-      const pageUrl = `${pageName}/list`;
       // let pageUrl = "";
       // switch (pageName) {
       //   case "users":
@@ -93,6 +90,8 @@ const systemModule: Module<ISystemState, IRootStore> = {
       //     pageUrl = "role/list";
       //     break;
       // }
+      const pageUrl = `${pageName}/list`;
+
       // 2.对页面发送请求
       const pageResult = await getPageListData(pageUrl, payload.queryInfo);
       console.log(pageResult);
@@ -116,7 +115,7 @@ const systemModule: Module<ISystemState, IRootStore> = {
       //     break
       // }
     },
-    async deletePageDataAction({ dispatch, rootState }, payload: any) {
+    async deletePageDataAction({ dispatch, rootState }, payload: IPagePayload) {
       // 1.获取pageName和id
       // pageName -> /users
       // id -> /users/id
@@ -140,14 +139,14 @@ const systemModule: Module<ISystemState, IRootStore> = {
         },
       });
     },
-    async createPageDataAction({ dispatch, rootState }, payload: any) {
+    async createPageDataAction({ dispatch, rootState }, payload: IPagePayload) {
       // 1.创建数据的请求
       const { pageName, newData } = payload;
       const pageUrl = `/${pageName}`;
       await createPageData(pageUrl, newData);
       ElMessage({
         type: "success",
-        message: "增加成功!",
+        message: "新建成功!",
       });
 
       // 2.请求最新的数据
@@ -160,8 +159,8 @@ const systemModule: Module<ISystemState, IRootStore> = {
         },
       });
     },
-
-    async editPageDataAction({ dispatch, rootState }, payload: any) {
+    async editPageDataAction({ dispatch, rootState }, payload: IPagePayload) {
+      if (!payload.id) return;
       // 1.编辑数据的请求
       const { pageName, editData, id } = payload;
       const pageUrl = `/${pageName}/${id}`;

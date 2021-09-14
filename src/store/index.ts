@@ -6,6 +6,7 @@ import { IRootStore, IStoreType } from "./type";
 
 import login from "./login/login";
 import system from "./main/system/system";
+import dashboard from "./main/analysis/dashboard";
 
 const store = createStore<IRootStore>({
   state() {
@@ -15,6 +16,7 @@ const store = createStore<IRootStore>({
       queryInfo: {},
       entireDepartment: [],
       entireRole: [],
+      entireMenu: [],
     };
   },
   mutations: {
@@ -26,6 +28,9 @@ const store = createStore<IRootStore>({
     },
     changeEntireRole(state, entireRole) {
       state.entireRole = entireRole;
+    },
+    changeEntireMenu(state, entireMenu) {
+      state.entireMenu = entireMenu;
     },
   },
   actions: {
@@ -41,21 +46,24 @@ const store = createStore<IRootStore>({
         size: 1000,
       });
       const { list: roleList } = roleResult.data;
+      const menuResult = await getPageListData("/menu/list", {});
+      const { list: menuList } = menuResult.data;
 
       // 2.保存数据
       commit("changeEntireDepartment", departmentList);
       commit("changeEntireRole", roleList);
+      commit("changeEntireMenu", menuList);
     },
   },
   modules: {
     login,
     system,
+    dashboard,
   },
 });
 
 export function setupStore() {
   store.dispatch("login/loadLocalLogin");
-  store.dispatch("getInitialDataAction");
 }
 
 // 解决Vuex中useStore类型问题(比如：子模块中的类型不能识别)

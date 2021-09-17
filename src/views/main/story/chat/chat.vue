@@ -1,16 +1,23 @@
 <template>
   <div class="chat">
-    <h2>chat</h2>
+    <an-editor v-model:value="htmlString" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import AnEditor from "@/base-ui/editor";
 
 export default defineComponent({
   name: "chat",
+  components: {
+    AnEditor,
+  },
   setup() {
-    return {};
+    const htmlString = ref<string>("你好鸭");
+    return {
+      htmlString,
+    };
   },
 });
 </script>

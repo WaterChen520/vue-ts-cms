@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-14 16:33:31
- * @LastEditTime: 2021-09-14 16:37:42
+ * @LastEditTime: 2021-09-16 15:53:01
  * @LastEditors: 安知鱼
  */
 export interface IDashboardState {
@@ -11,4 +11,5 @@ export interface IDashboardState {
   categoryGoodsSale: any[];
   categoryGoodsFavor: any[];
   addressGoodsSale: any[];
+  topPanelDatas: any[];
 }

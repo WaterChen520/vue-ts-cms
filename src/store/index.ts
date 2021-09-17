@@ -13,6 +13,7 @@ const store = createStore<IRootStore>({
     return {
       name: "anzhiyu",
       age: 18,
+      isFold: false,
       queryInfo: {},
       entireDepartment: [],
       entireRole: [],
@@ -31,6 +32,9 @@ const store = createStore<IRootStore>({
     },
     changeEntireMenu(state, entireMenu) {
       state.entireMenu = entireMenu;
+    },
+    ChangeIsFold(state, isFold) {
+      state.isFold = isFold;
     },
   },
   actions: {

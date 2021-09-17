@@ -3,13 +3,12 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-10 15:02:21
- * @LastEditTime: 2021-09-12 13:04:28
+ * @LastEditTime: 2021-09-16 16:57:57
  * @LastEditors: 安知鱼
  */
 
 export const contentTableConfig = {
   title: "菜单列表",
-  increaseTitle: "新建菜单",
   propList: [
     { prop: "name", label: "菜单名称", minWidth: "100" },
     { prop: "type", label: "类型", minWidth: "60" },

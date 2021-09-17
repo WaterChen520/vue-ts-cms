@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-14 16:32:54
- * @LastEditTime: 2021-09-14 17:18:19
+ * @LastEditTime: 2021-09-16 15:52:45
  * @LastEditors: 安知鱼
  */
 import { Module } from "vuex";
@@ -12,6 +12,7 @@ import { IDashboardState } from "./types";
 import { IRootStore } from "../../type";
 
 import {
+  getAmountList,
   getCategoryGoodsCount,
   getCategoryGoodsSale,
   getCategoryGoodsFavor,
@@ -22,6 +23,7 @@ const dashboardModule: Module<IDashboardState, IRootStore> = {
   namespaced: true,
   state() {
     return {
+      topPanelDatas: [],
       categoryGoodsCount: [],
       categoryGoodsSale: [],
       categoryGoodsFavor: [],
@@ -29,6 +31,9 @@ const dashboardModule: Module<IDashboardState, IRootStore> = {
     };
   },
   mutations: {
+    changeTopPanelDatas(state, list) {
+      state.topPanelDatas = list;
+    },
     changeCategoryGoodsCount(state, categoryGoodsCount) {
       state.categoryGoodsCount = categoryGoodsCount;
     },
@@ -44,12 +49,18 @@ const dashboardModule: Module<IDashboardState, IRootStore> = {
   },
   actions: {
     async getDashboardDataAction({ commit }) {
+      const resultTopPanelDatas = await getAmountList();
+      commit("changeTopPanelDatas", resultTopPanelDatas);
+
       const categoryGoodsCountResult = await getCategoryGoodsCount();
       commit("changeCategoryGoodsCount", categoryGoodsCountResult.data);
+
       const categoryGoodsSaleResult = await getCategoryGoodsSale();
       commit("changeCategoryGoodsSale", categoryGoodsSaleResult.data);
+
       const categoryGoodsFavorResult = await getCategoryGoodsFavor();
       commit("changeCategoryGoodsFavor", categoryGoodsFavorResult.data);
+
       const addressGoodsSaleResult = await getAddressGoodsSale();
       commit("changeAddressGoodsSale", addressGoodsSaleResult.data);
     },

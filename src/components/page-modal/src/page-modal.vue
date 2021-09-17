@@ -15,7 +15,7 @@
       center
       destroy-on-close
     >
-      <hy-form v-bind="modalConfig" v-model="formData"></hy-form>
+      <an-form v-bind="modalConfig" v-model="formData"></an-form>
       <slot></slot>
       <template #footer>
         <span class="dialog-footer">
@@ -33,11 +33,11 @@
 import { defineComponent, ref, watch } from "vue";
 import { useStore } from "vuex";
 
-import HyForm from "@/base-ui/form";
+import AnForm from "@/base-ui/form";
 
 export default defineComponent({
   components: {
-    HyForm,
+    AnForm,
   },
   props: {
     modalConfig: {

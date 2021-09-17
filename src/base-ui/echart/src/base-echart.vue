@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-14 17:26:11
- * @LastEditTime: 2021-09-14 17:49:33
+ * @LastEditTime: 2021-09-16 14:51:32
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -16,9 +16,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, defineProps, withDefaults } from "vue";
-import * as echarts from "echarts";
+import {
+  ref,
+  onMounted,
+  defineProps,
+  withDefaults,
+  watchEffect,
+  watch,
+  computed,
+  onBeforeUnmount,
+} from "vue";
 import { EChartsOption } from "echarts";
+import useEchart from "../hooks/useEcharts";
+import { useStore } from "@/store";
 
 // 定义props,使用泛型定义Props的类型
 const props = withDefaults(
@@ -32,13 +42,31 @@ const props = withDefaults(
     echartHeight: "360px",
   }
 );
+const store = useStore();
 
 const echartDivRef = ref<HTMLElement>();
+const isFold: any = computed(() => store.state.isFold);
 
+let timer: any;
 onMounted(() => {
-  const echartInstance = echarts.init(echartDivRef.value!);
-
-  echartInstance.setOption(props.options);
+  const { setOptions, updateSize } = useEchart(echartDivRef.value!);
+  watchEffect(() => {
+    setOptions(props.options);
+  });
+  watch(isFold, () => {
+    let i = 0;
+    timer = setInterval(() => {
+      i++;
+      if (i === 10) {
+        clearInterval(timer);
+      }
+      updateSize();
+    }, 10);
+  });
+});
+onBeforeUnmount(() => {
+  clearInterval(timer);
+  timer = null;
 });
 </script>
 

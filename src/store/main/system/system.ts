@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-07 13:48:26
- * @LastEditTime: 2021-09-14 11:43:21
+ * @LastEditTime: 2021-09-16 17:28:32
  * @LastEditors: 安知鱼
  */
 
@@ -31,6 +31,12 @@ const systemModule: Module<ISystemState, IRootStore> = {
       goodsCount: 0,
       menuList: [],
       menuCount: 0,
+      departmentCount: 0,
+      departmentList: [],
+      categoryCount: 0,
+      categoryList: [],
+      storyCount: 0,
+      storyList: [],
     };
   },
   mutations: {
@@ -57,6 +63,24 @@ const systemModule: Module<ISystemState, IRootStore> = {
     },
     changeMenuCount(state, menuCount: number) {
       state.menuCount = menuCount;
+    },
+    changeDepartmentList(state, departmentList: any[]) {
+      state.departmentList = departmentList;
+    },
+    changeDepartmentCount(state, departmentCount: number) {
+      state.departmentCount = departmentCount;
+    },
+    changeCategoryList(state, categoryList: any[]) {
+      state.categoryList = categoryList;
+    },
+    changeCategoryCount(state, categoryCount: number) {
+      state.categoryCount = categoryCount;
+    },
+    changeStoryList(state, storyList: any[]) {
+      state.storyList = storyList;
+    },
+    changeStoryCount(state, storyCount: number) {
+      state.storyCount = storyCount;
     },
   },
   getters: {

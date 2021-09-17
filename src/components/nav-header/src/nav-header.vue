@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-30 17:21:27
- * @LastEditTime: 2021-09-06 15:19:46
+ * @LastEditTime: 2021-09-16 12:48:15
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -43,6 +43,7 @@ export default defineComponent({
     const handleFoldClick = () => {
       isFold.value = !isFold.value;
       emit("foldChange", isFold.value);
+      store.commit("ChangeIsFold", isFold.value);
     };
 
     // 面包屑数据: [{name: "首页", path: "/main"}]

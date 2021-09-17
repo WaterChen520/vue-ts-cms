@@ -10,79 +10,79 @@
 import { App } from "vue";
 
 // 默认使用中文
-// import zhCn from "element-plus/es/locale/lang/zh-cn";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
 
-// // 方式一：全局引入
-// import ElementPlus from "element-plus";
-// import "element-plus/dist/index.css";
+// 方式一：全局引入
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 
-// export default (app: App): void => {
-//   app.use(ElementPlus, {
-//     locale: zhCn,
-//   });
-// };
+export default (app: App): void => {
+  app.use(ElementPlus, {
+    locale: zhCn,
+  });
+};
 
 // 方式二：局部引入 (注意babel.config.js中需引入插件babel-plugin-import)
-import {
-  ElButton,
-  ElTabs,
-  ElInput,
-  ElLink,
-  ElForm,
-  ElCheckbox,
-  ElContainer,
-  ElMenu,
-  ElDropdown,
-  ElAvatar,
-  ElSelect,
-  ElDatePicker,
-  ElCard,
-  ElCol,
-  ElRow,
-  ElBreadcrumb,
-  ElTable,
-  ElPagination,
-  ElLoading,
-  ElImage,
-  ElMessage,
-  ElDialog,
-  ElTree,
-  ElTooltip,
-  ElDescriptions,
-  ElTag,
-} from "element-plus";
+// import {
+//   ElButton,
+//   ElTabs,
+//   ElInput,
+//   ElLink,
+//   ElForm,
+//   ElCheckbox,
+//   ElContainer,
+//   ElMenu,
+//   ElDropdown,
+//   ElAvatar,
+//   ElSelect,
+//   ElDatePicker,
+//   ElCard,
+//   ElCol,
+//   ElRow,
+//   ElBreadcrumb,
+//   ElTable,
+//   ElPagination,
+//   ElLoading,
+//   ElImage,
+//   ElMessage,
+//   ElDialog,
+//   ElTree,
+//   ElTooltip,
+//   ElDescriptions,
+//   ElTag,
+// } from "element-plus";
 
-const components = [
-  ElButton,
-  ElTabs,
-  ElInput,
-  ElLink,
-  ElForm,
-  ElCheckbox,
-  ElContainer,
-  ElMenu,
-  ElDropdown,
-  ElAvatar,
-  ElSelect,
-  ElDatePicker,
-  ElCard,
-  ElCol,
-  ElRow,
-  ElBreadcrumb,
-  ElTable,
-  ElPagination,
-  ElImage,
-  ElDialog,
-  ElTree,
-  ElTooltip,
-  ElDescriptions,
-  ElTag,
-  ElMessage,
-  ElLoading,
-];
+// const components = [
+//   ElButton,
+//   ElTabs,
+//   ElInput,
+//   ElLink,
+//   ElForm,
+//   ElCheckbox,
+//   ElContainer,
+//   ElMenu,
+//   ElDropdown,
+//   ElAvatar,
+//   ElSelect,
+//   ElDatePicker,
+//   ElCard,
+//   ElCol,
+//   ElRow,
+//   ElBreadcrumb,
+//   ElTable,
+//   ElPagination,
+//   ElImage,
+//   ElDialog,
+//   ElTree,
+//   ElTooltip,
+//   ElDescriptions,
+//   ElTag,
+//   ElMessage,
+//   ElLoading,
+// ];
 
-export default function (app: App): void {
-  for (const cpn of components) {
-    app.use(cpn);
-  }
-}
+// export default function (app: App): void {
+//   for (const cpn of components) {
+//     app.use(cpn);
+//   }
+// }

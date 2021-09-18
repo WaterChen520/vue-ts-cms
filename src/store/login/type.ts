@@ -8,8 +8,8 @@
  */
 
 export interface ILoginState {
-  token: string;
-  userInfo: any;
-  userMenus: any;
-  permissions: string[];
+  token: string
+  userInfo: any
+  userMenus: any
+  permissions: string[]
 }

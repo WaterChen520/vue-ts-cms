@@ -7,20 +7,20 @@
  * @LastEditors: 安知鱼
  */
 
-import { App } from "vue";
+import { App } from 'vue'
 
 // 默认使用中文
-import zhCn from "element-plus/es/locale/lang/zh-cn";
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 // 方式一：全局引入
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 export default (app: App): void => {
   app.use(ElementPlus, {
-    locale: zhCn,
-  });
-};
+    locale: zhCn
+  })
+}
 
 // 方式二：局部引入 (注意babel.config.js中需引入插件babel-plugin-import)
 // import {

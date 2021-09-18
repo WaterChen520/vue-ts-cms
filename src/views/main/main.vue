@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-08-28 11:45:26
- * @LastEditTime: 2021-09-07 09:06:15
+ * @LastEditTime: 2021-09-18 14:19:10
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -27,27 +27,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import NavMenu from "@/components/nav-menu";
-import NavHeader from "@/components/nav-header";
+import { defineComponent, ref } from 'vue'
+import NavMenu from '@/components/nav-menu'
+import NavHeader from '@/components/nav-header'
 
 export default defineComponent({
   components: {
     NavMenu,
-    NavHeader,
+    NavHeader
   },
   setup() {
-    const isCollapse = ref(false);
+    const isCollapse = ref(false)
     const handleFoldChange = (isFold: boolean) => {
-      isCollapse.value = isFold;
-    };
+      isCollapse.value = isFold
+    }
 
     return {
       isCollapse,
-      handleFoldChange,
-    };
-  },
-});
+      handleFoldChange
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

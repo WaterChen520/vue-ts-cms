@@ -257,4 +257,4 @@ vue-ts-cms
 │        └─ not-found.vue
 ├─ tsconfig.json
 └─ vue.config.js
-`;
+`

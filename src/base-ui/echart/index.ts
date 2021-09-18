@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-09-16 10:20:35
  * @LastEditors: 安知鱼
  */
-import BaseEchart from "./src/base-echart.vue";
+import BaseEchart from './src/base-echart.vue'
 
-export default BaseEchart;
+export default BaseEchart

@@ -47,21 +47,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "@/store";
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
 
-import AnCard from "@/base-ui/card";
-import StatisticalPanel from "@/components/statistical-panel";
+import AnCard from '@/base-ui/card'
+import StatisticalPanel from '@/components/statistical-panel'
 import {
   PieEchart,
   RoseEchart,
   LineEchart,
   BarEchart,
-  MapEchart,
-} from "@/components/page-echarts";
+  MapEchart
+} from '@/components/page-echarts'
 
 export default defineComponent({
-  name: "dashboard",
+  name: 'dashboard',
   components: {
     AnCard,
     StatisticalPanel,
@@ -69,55 +69,55 @@ export default defineComponent({
     RoseEchart,
     LineEchart,
     BarEchart,
-    MapEchart,
+    MapEchart
   },
   setup() {
-    const store = useStore();
+    const store = useStore()
     // 请求数据
-    store.dispatch("dashboard/getDashboardDataAction");
+    store.dispatch('dashboard/getDashboardDataAction')
 
     // 获取数据
-    const topPanelData = computed(() => store.state.dashboard.topPanelDatas);
+    const topPanelData = computed(() => store.state.dashboard.topPanelDatas)
     const categoryGoodsCount = computed(() => {
       return store.state.dashboard.categoryGoodsCount.map((item: any) => {
-        return { name: item.name, value: item.goodsCount };
-      });
-    });
+        return { name: item.name, value: item.goodsCount }
+      })
+    })
     const categoryGoodsSale = computed(() => {
-      const xLabels: string[] = [];
-      const values: any[] = [];
-      const categoryGoodsSale = store.state.dashboard.categoryGoodsSale;
+      const xLabels: string[] = []
+      const values: any[] = []
+      const categoryGoodsSale = store.state.dashboard.categoryGoodsSale
       for (const item of categoryGoodsSale) {
-        xLabels.push(item.name);
-        values.push(item.goodsCount);
+        xLabels.push(item.name)
+        values.push(item.goodsCount)
       }
-      return { xLabels, values };
-    });
+      return { xLabels, values }
+    })
     const categoryGoodsFavor = computed(() => {
-      const xLabels: string[] = [];
-      const values: any[] = [];
-      const categoryGoodsFavor = store.state.dashboard.categoryGoodsFavor;
+      const xLabels: string[] = []
+      const values: any[] = []
+      const categoryGoodsFavor = store.state.dashboard.categoryGoodsFavor
       for (const item of categoryGoodsFavor) {
-        xLabels.push(item.name);
-        values.push(item.goodsFavor);
+        xLabels.push(item.name)
+        values.push(item.goodsFavor)
       }
-      return { xLabels, values };
-    });
+      return { xLabels, values }
+    })
     const addressGoodsSale = computed(() => {
       return store.state.dashboard.addressGoodsSale.map((item: any) => {
-        return { name: item.address, value: item.count };
-      });
-    });
+        return { name: item.address, value: item.count }
+      })
+    })
 
     return {
       topPanelData,
       categoryGoodsCount,
       categoryGoodsSale,
       categoryGoodsFavor,
-      addressGoodsSale,
-    };
-  },
-});
+      addressGoodsSale
+    }
+  }
+})
 </script>
 
 <style scoped>

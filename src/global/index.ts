@@ -6,11 +6,11 @@
  * @LastEditTime: 2021-09-10 09:29:27
  * @LastEditors: 安知鱼
  */
-import { App } from "vue";
+import { App } from 'vue'
 
-import registerElement from "./register-element";
-import registerProperties from "./register-properties";
+import registerElement from './register-element'
+import registerProperties from './register-properties'
 export function globalRegister(app: App): void {
-  app.use(registerElement);
-  app.use(registerProperties);
+  app.use(registerElement)
+  app.use(registerProperties)
 }

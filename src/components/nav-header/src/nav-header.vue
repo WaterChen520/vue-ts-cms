@@ -21,46 +21,46 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
-import UserInfo from "./user-info.vue";
+import { defineComponent, ref, computed } from 'vue'
+import UserInfo from './user-info.vue'
 
-import AnBreadcrumb from "@/base-ui/breadcrumb";
-import { pathMapBreadcrumbs } from "@/utils/map-menus";
-import { useStore } from "@/store";
-import { useRoute } from "vue-router";
+import AnBreadcrumb from '@/base-ui/breadcrumb'
+import { pathMapBreadcrumbs } from '@/utils/map-menus'
+import { useStore } from '@/store'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   components: {
     UserInfo,
-    AnBreadcrumb,
+    AnBreadcrumb
   },
-  emits: ["foldChange"],
+  emits: ['foldChange'],
   setup(props, { emit }) {
     // store
-    const store = useStore();
+    const store = useStore()
 
-    const isFold = ref(false);
+    const isFold = ref(false)
     const handleFoldClick = () => {
-      isFold.value = !isFold.value;
-      emit("foldChange", isFold.value);
-      store.commit("ChangeIsFold", isFold.value);
-    };
+      isFold.value = !isFold.value
+      emit('foldChange', isFold.value)
+      store.commit('ChangeIsFold', isFold.value)
+    }
 
     // 面包屑数据: [{name: "首页", path: "/main"}]
     const breadcrumbs = computed(() => {
-      const route = useRoute();
-      const userMenus = store.state.login.userMenus;
-      const currentPath = route.path;
-      return pathMapBreadcrumbs(userMenus, currentPath);
-    });
+      const route = useRoute()
+      const userMenus = store.state.login.userMenus
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
 
     return {
       breadcrumbs,
       isFold,
-      handleFoldClick,
-    };
-  },
-});
+      handleFoldClick
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

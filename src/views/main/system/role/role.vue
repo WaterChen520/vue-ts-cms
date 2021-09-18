@@ -30,53 +30,53 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, nextTick } from "vue";
-import { useStore } from "@/store";
-import { menuMapLeafKeys } from "@/utils/map-menus";
-import { ElTree } from "element-plus";
+import { defineComponent, computed, ref, nextTick } from 'vue'
+import { useStore } from '@/store'
+import { menuMapLeafKeys } from '@/utils/map-menus'
+import { ElTree } from 'element-plus'
 
-import PageContent from "@/components/page-content";
-import PageSearch from "@/components/page-search";
-import PageModal from "@/components/page-modal";
+import PageContent from '@/components/page-content'
+import PageSearch from '@/components/page-search'
+import PageModal from '@/components/page-modal'
 
-import { contentTableConfig } from "./config/content.config";
-import { searchFormConfig } from "./config/search.config";
-import { modalConfig } from "./config/modal.config";
+import { contentTableConfig } from './config/content.config'
+import { searchFormConfig } from './config/search.config'
+import { modalConfig } from './config/modal.config'
 
-import { usePageModal } from "@/hooks/use-page-modal";
+import { usePageModal } from '@/hooks/use-page-modal'
 
 export default defineComponent({
-  name: "role",
+  name: 'role',
   components: {
     PageContent,
     PageSearch,
-    PageModal,
+    PageModal
   },
   setup() {
     // 1.处理pageModal的hook
-    const elTreeRef = ref<InstanceType<typeof ElTree>>();
+    const elTreeRef = ref<InstanceType<typeof ElTree>>()
     const editCallBack = (item: any) => {
       // console.log(item);
-      const leafKeys = menuMapLeafKeys(item.menuList);
+      const leafKeys = menuMapLeafKeys(item.menuList)
       nextTick(() => {
-        elTreeRef.value?.setCheckedKeys(leafKeys, false);
-      });
-    };
+        elTreeRef.value?.setCheckedKeys(leafKeys, false)
+      })
+    }
     const [pageModalRef, defaultInfo, handleNewData, handleEditData] =
-      usePageModal("角色", undefined, editCallBack);
+      usePageModal('角色', undefined, editCallBack)
 
-    const store = useStore();
-    const menus = computed(() => store.state.entireMenu);
+    const store = useStore()
+    const menus = computed(() => store.state.entireMenu)
 
-    const otherInfo = ref({});
+    const otherInfo = ref({})
     const handleCheckChange = (data1: any, data2: any) => {
       // console.log("data1", data1);
       // console.log("data2", data2);
-      const checkedKeys = data2.checkedKeys;
-      const halfCheckedKeys = data2.halfCheckedKeys;
-      const menuList = [...checkedKeys, ...halfCheckedKeys];
-      otherInfo.value = { menuList };
-    };
+      const checkedKeys = data2.checkedKeys
+      const halfCheckedKeys = data2.halfCheckedKeys
+      const menuList = [...checkedKeys, ...halfCheckedKeys]
+      otherInfo.value = { menuList }
+    }
     return {
       searchFormConfig,
       contentTableConfig,
@@ -89,10 +89,10 @@ export default defineComponent({
       otherInfo,
       elTreeRef,
       handleCheckChange,
-      usePageModal,
-    };
-  },
-});
+      usePageModal
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

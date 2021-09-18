@@ -7,9 +7,9 @@
  * @LastEditors: 安知鱼
  */
 export interface IDashboardState {
-  categoryGoodsCount: any[];
-  categoryGoodsSale: any[];
-  categoryGoodsFavor: any[];
-  addressGoodsSale: any[];
-  topPanelDatas: any[];
+  categoryGoodsCount: any[]
+  categoryGoodsSale: any[]
+  categoryGoodsFavor: any[]
+  addressGoodsSale: any[]
+  topPanelDatas: any[]
 }

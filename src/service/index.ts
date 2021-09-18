@@ -7,9 +7,9 @@
  * @LastEditors: 安知鱼
  */
 
-import ANRequest from "./request";
-import Cache from "@/utils/cache";
-import { BASE_URL, TIME_OUT } from "./request/config";
+import ANRequest from './request'
+import Cache from '@/utils/cache'
+import { BASE_URL, TIME_OUT } from './request/config'
 
 const anRequest = new ANRequest({
   baseURL: BASE_URL,
@@ -17,22 +17,22 @@ const anRequest = new ANRequest({
   interceptors: {
     requestInterceptor: (config) => {
       // 携带token的拦截
-      const token = Cache.getCache("token");
+      const token = Cache.getCache('token')
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `Bearer ${token}`
       }
-      return config;
+      return config
     },
     requestInterceptorCatch: (err) => {
-      return err;
+      return err
     },
     responseInterceptor: (res) => {
-      return res;
+      return res
     },
     responseInterceptorCatch: (err) => {
-      return err;
-    },
-  },
-});
+      return err
+    }
+  }
+})
 
-export default anRequest;
+export default anRequest

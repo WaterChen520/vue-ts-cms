@@ -1,5 +1,5 @@
-import AnDescriptions from "./src/descriptions.vue";
-import type { DescriptionProp } from "./types/types";
+import AnDescriptions from './src/descriptions.vue'
+import type { DescriptionProp } from './types/types'
 
-export { DescriptionProp };
-export default AnDescriptions;
+export { DescriptionProp }
+export default AnDescriptions

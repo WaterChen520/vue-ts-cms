@@ -7,27 +7,27 @@
  * @LastEditors: 安知鱼
  */
 
-type IFormType = "input" | "password" | "select" | "datepicker";
+type IFormType = 'input' | 'password' | 'select' | 'datepicker'
 
 export interface IFormItem {
-  field: string;
-  type: IFormType;
-  label: string;
-  rules?: any[];
-  placeholder?: string;
+  field: string
+  type: IFormType
+  label: string
+  rules?: any[]
+  placeholder?: string
   // 针对单独item设置样式
-  itemStyle?: any;
+  itemStyle?: any
   // 针对select
-  options?: any[];
+  options?: any[]
   // 针对特殊的属性
-  otherOptions?: any;
+  otherOptions?: any
   // 控制item编辑时隐藏
-  isHidden?: boolean;
+  isHidden?: boolean
 }
 
 export interface IForm {
-  formItems: IFormItem[];
-  labelWidth?: string;
-  colLayout?: any;
-  itemStyle?: any;
+  formItems: IFormItem[]
+  labelWidth?: string
+  colLayout?: any
+  itemStyle?: any
 }

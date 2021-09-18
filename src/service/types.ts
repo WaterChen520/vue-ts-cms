@@ -7,7 +7,7 @@
  * @LastEditors: 安知鱼
  */
 export interface IDataType<T = any> {
-  code: number;
-  data: T;
-  showLoding?: boolean;
+  code: number
+  data: T
+  showLoding?: boolean
 }

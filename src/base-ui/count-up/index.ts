@@ -1,3 +1,3 @@
-import AnCouterUp from "./src/countup.vue";
+import AnCouterUp from './src/countup.vue'
 
-export default AnCouterUp;
+export default AnCouterUp

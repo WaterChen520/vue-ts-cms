@@ -5,72 +5,72 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, withDefaults } from "vue";
-import BaseEchart from "@/base-ui/echart";
+import { computed, defineProps, withDefaults } from 'vue'
+import BaseEchart from '@/base-ui/echart'
 
 const props = withDefaults(
   defineProps<{
-    title?: string;
-    xLabels: string[];
-    values: any[];
+    title?: string
+    xLabels: string[]
+    values: any[]
   }>(),
   {
-    title: "",
+    title: ''
   }
-);
+)
 
 const options = computed(() => {
   return {
     title: {
-      text: props.title,
+      text: props.title
     },
     tooltip: {
-      trigger: "axis",
+      trigger: 'axis',
       axisPointer: {
-        type: "cross",
+        type: 'cross',
         label: {
-          backgroundColor: "#6a7985",
-        },
-      },
+          backgroundColor: '#6a7985'
+        }
+      }
     },
     legend: {},
     toolbox: {
       feature: {
-        saveAsImage: {},
-      },
+        saveAsImage: {}
+      }
     },
     grid: {
-      left: "3%",
-      right: "4%",
-      bottom: "3%",
-      containLabel: true,
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
     },
     xAxis: [
       {
-        type: "category",
+        type: 'category',
         boundaryGap: false,
-        data: props.xLabels,
-      },
+        data: props.xLabels
+      }
     ],
     yAxis: [
       {
-        type: "value",
-      },
+        type: 'value'
+      }
     ],
     series: [
       {
-        name: "类别销量",
-        type: "line",
-        stack: "总量",
+        name: '类别销量',
+        type: 'line',
+        stack: '总量',
         areaStyle: {},
         emphasis: {
-          focus: "series",
+          focus: 'series'
         },
-        data: props.values,
-      },
-    ],
-  };
-});
+        data: props.values
+      }
+    ]
+  }
+})
 </script>
 
 <style scoped></style>

@@ -7,17 +7,17 @@
  * @LastEditors: 安知鱼
  */
 
-import { Module } from "vuex";
-import { IRootStore } from "./../../type";
-import { ISystemState, IPagePayload } from "./types";
+import { Module } from 'vuex'
+import { IRootStore } from './../../type'
+import { ISystemState, IPagePayload } from './types'
 import {
   editPageData,
   createPageData,
   deletePageData,
-  getPageListData,
-} from "@/service/main/system/system";
+  getPageListData
+} from '@/service/main/system/system'
 
-import { ElMessage } from "element-plus";
+import { ElMessage } from 'element-plus'
 
 const systemModule: Module<ISystemState, IRootStore> = {
   namespaced: true,
@@ -36,75 +36,75 @@ const systemModule: Module<ISystemState, IRootStore> = {
       categoryCount: 0,
       categoryList: [],
       storyCount: 0,
-      storyList: [],
-    };
+      storyList: []
+    }
   },
   mutations: {
     changeUsersList(state, userList: any[]) {
-      state.usersList = userList;
+      state.usersList = userList
     },
     changeUsersCount(state, userCount: number) {
-      state.usersCount = userCount;
+      state.usersCount = userCount
     },
     changeRoleList(state, roleList: any[]) {
-      state.roleList = roleList;
+      state.roleList = roleList
     },
     changeRoleCount(state, roleCount: number) {
-      state.roleCount = roleCount;
+      state.roleCount = roleCount
     },
     changeGoodsList(state, goodsList: any[]) {
-      state.goodsList = goodsList;
+      state.goodsList = goodsList
     },
     changeGoodsCount(state, goodsCount: number) {
-      state.goodsCount = goodsCount;
+      state.goodsCount = goodsCount
     },
     changeMenuList(state, menuList: any[]) {
-      state.menuList = menuList;
+      state.menuList = menuList
     },
     changeMenuCount(state, menuCount: number) {
-      state.menuCount = menuCount;
+      state.menuCount = menuCount
     },
     changeDepartmentList(state, departmentList: any[]) {
-      state.departmentList = departmentList;
+      state.departmentList = departmentList
     },
     changeDepartmentCount(state, departmentCount: number) {
-      state.departmentCount = departmentCount;
+      state.departmentCount = departmentCount
     },
     changeCategoryList(state, categoryList: any[]) {
-      state.categoryList = categoryList;
+      state.categoryList = categoryList
     },
     changeCategoryCount(state, categoryCount: number) {
-      state.categoryCount = categoryCount;
+      state.categoryCount = categoryCount
     },
     changeStoryList(state, storyList: any[]) {
-      state.storyList = storyList;
+      state.storyList = storyList
     },
     changeStoryCount(state, storyCount: number) {
-      state.storyCount = storyCount;
-    },
+      state.storyCount = storyCount
+    }
   },
   getters: {
     pageListData(state) {
       return (pageName: string) => {
-        return (state as any)[`${pageName}List`];
+        return (state as any)[`${pageName}List`]
         // switch (pageName) {
         //   case 'users':
         //     return state.usersList
         //   case 'role':
         //     return state.roleList
         // }
-      };
+      }
     },
     pageListCount(state) {
       return (pageName: string) => {
-        return (state as any)[`${pageName}Count`];
-      };
-    },
+        return (state as any)[`${pageName}Count`]
+      }
+    }
   },
   actions: {
     async getPageListAction({ commit }, payload: IPagePayload) {
       // 1.获取pageUrl
-      const pageName = payload.pageName;
+      const pageName = payload.pageName
       // let pageUrl = "";
       // switch (pageName) {
       //   case "users":
@@ -114,19 +114,19 @@ const systemModule: Module<ISystemState, IRootStore> = {
       //     pageUrl = "role/list";
       //     break;
       // }
-      const pageUrl = `${pageName}/list`;
+      const pageUrl = `${pageName}/list`
 
       // 2.对页面发送请求
-      const pageResult = await getPageListData(pageUrl, payload.queryInfo);
-      console.log(pageResult);
+      const pageResult = await getPageListData(pageUrl, payload.queryInfo)
+      console.log(pageResult)
 
       // 3.将数据存储到state中
-      const { list, totalCount } = pageResult.data;
+      const { list, totalCount } = pageResult.data
 
       const changePageName =
-        pageName.slice(0, 1).toUpperCase() + pageName.slice(1);
-      commit(`change${changePageName}List`, list);
-      commit(`change${changePageName}Count`, totalCount);
+        pageName.slice(0, 1).toUpperCase() + pageName.slice(1)
+      commit(`change${changePageName}List`, list)
+      commit(`change${changePageName}Count`, totalCount)
 
       // switch (pageName) {
       //   case 'users':
@@ -143,68 +143,68 @@ const systemModule: Module<ISystemState, IRootStore> = {
       // 1.获取pageName和id
       // pageName -> /users
       // id -> /users/id
-      const { pageName, id } = payload;
-      const pageUrl = `/${pageName}/${id}`;
+      const { pageName, id } = payload
+      const pageUrl = `/${pageName}/${id}`
 
       // 2.调用删除网络请求
-      await deletePageData(pageUrl);
+      await deletePageData(pageUrl)
       ElMessage({
-        type: "success",
-        message: "删除成功!",
-      });
+        type: 'success',
+        message: '删除成功!'
+      })
 
       // 3.重新请求最新的数据
-      dispatch("getPageListAction", {
+      dispatch('getPageListAction', {
         pageName,
         queryInfo: {
           offset: 0,
           size: 10,
-          ...rootState.queryInfo,
-        },
-      });
+          ...rootState.queryInfo
+        }
+      })
     },
     async createPageDataAction({ dispatch, rootState }, payload: IPagePayload) {
       // 1.创建数据的请求
-      const { pageName, newData } = payload;
-      const pageUrl = `/${pageName}`;
-      await createPageData(pageUrl, newData);
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      await createPageData(pageUrl, newData)
       ElMessage({
-        type: "success",
-        message: "新建成功!",
-      });
+        type: 'success',
+        message: '新建成功!'
+      })
 
       // 2.请求最新的数据
-      dispatch("getPageListAction", {
+      dispatch('getPageListAction', {
         pageName,
         queryInfo: {
           offset: 0,
           size: 10,
-          ...rootState.queryInfo,
-        },
-      });
+          ...rootState.queryInfo
+        }
+      })
     },
     async editPageDataAction({ dispatch, rootState }, payload: IPagePayload) {
-      if (!payload.id) return;
+      if (!payload.id) return
       // 1.编辑数据的请求
-      const { pageName, editData, id } = payload;
-      const pageUrl = `/${pageName}/${id}`;
-      await editPageData(pageUrl, editData);
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      await editPageData(pageUrl, editData)
       ElMessage({
-        type: "success",
-        message: "编辑成功!",
-      });
+        type: 'success',
+        message: '编辑成功!'
+      })
 
       // 2.请求最新的数据
-      dispatch("getPageListAction", {
+      dispatch('getPageListAction', {
         pageName,
         queryInfo: {
           offset: 0,
           size: 10,
-          ...rootState.queryInfo,
-        },
-      });
-    },
-  },
-};
+          ...rootState.queryInfo
+        }
+      })
+    }
+  }
+}
 
-export default systemModule;
+export default systemModule

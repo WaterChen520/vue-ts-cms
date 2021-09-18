@@ -18,46 +18,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "@/store";
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
 
-import PageSearch from "@/components/page-search";
-import PageContent from "@/components/page-content";
-import PageModal from "@/components/page-modal";
+import PageSearch from '@/components/page-search'
+import PageContent from '@/components/page-content'
+import PageModal from '@/components/page-modal'
 
-import { usePageSearch } from "@/hooks/use-page-search";
-import { usePageModal } from "@/hooks/use-page-modal";
+import { usePageSearch } from '@/hooks/use-page-search'
+import { usePageModal } from '@/hooks/use-page-modal'
 
-import { searchFormConfig } from "./config/search.config";
-import { contentTableConfig } from "./config/content.config";
-import { modalConfig } from "./config/modal.config";
+import { searchFormConfig } from './config/search.config'
+import { contentTableConfig } from './config/content.config'
+import { modalConfig } from './config/modal.config'
 
 export default defineComponent({
-  name: "department",
+  name: 'department',
   components: {
     PageSearch,
     PageContent,
-    PageModal,
+    PageModal
   },
   setup() {
-    const [pageContentRef, handleQueryClick, handleResetClick] =
-      usePageSearch();
+    const [pageContentRef, handleQueryClick, handleResetClick] = usePageSearch()
 
     // modal配置信息
-    const store = useStore();
+    const store = useStore()
     const modalConfigRef = computed(() => {
       const parentIdItem = modalConfig.formItems?.find(
-        (item) => item.field === "parentId"
-      );
+        (item) => item.field === 'parentId'
+      )
       parentIdItem!.options = store.state.entireDepartment.map((item) => {
-        return { label: item.name, value: item.id };
-      });
-      return modalConfig;
-    });
+        return { label: item.name, value: item.id }
+      })
+      return modalConfig
+    })
 
     // 处理modal的hook
     const [modalInfo, pageModalRef, handleNewData, handleEditData] =
-      usePageModal("部门");
+      usePageModal('部门')
 
     return {
       searchFormConfig,
@@ -69,10 +68,10 @@ export default defineComponent({
       modalInfo,
       pageModalRef,
       handleNewData,
-      handleEditData,
-    };
-  },
-});
+      handleEditData
+    }
+  }
+})
 </script>
 
 <style scoped></style>

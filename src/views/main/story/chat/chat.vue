@@ -5,21 +5,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import AnEditor from "@/base-ui/editor";
+import { defineComponent, ref } from 'vue'
+import AnEditor from '@/base-ui/editor'
 
 export default defineComponent({
-  name: "chat",
+  name: 'chat',
   components: {
-    AnEditor,
+    AnEditor
   },
   setup() {
-    const htmlString = ref<string>("你好鸭");
+    const htmlString = ref<string>('你好鸭')
     return {
-      htmlString,
-    };
-  },
-});
+      htmlString
+    }
+  }
+})
 </script>
 
 <style scoped></style>

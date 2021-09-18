@@ -18,19 +18,19 @@
 </template>
 
 <script>
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router'
 export default {
-  name: "404",
+  name: '404',
   setup() {
-    const router = useRouter();
+    const router = useRouter()
     const goBack = () => {
-      router.go(-1);
-    };
+      router.go(-1)
+    }
     return {
-      goBack,
-    };
-  },
-};
+      goBack
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -42,7 +42,7 @@ export default {
   color: #fff;
   font-size: 100%;
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .button {

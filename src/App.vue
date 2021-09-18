@@ -7,27 +7,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { ElConfigProvider } from "element-plus";
+import { defineComponent } from 'vue'
+import { ElConfigProvider } from 'element-plus'
 
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
-    ElConfigProvider,
+    ElConfigProvider
   },
   props: {
     name: {
-      type: String,
-    },
+      type: String
+    }
   },
   setup() {
     return {
-      locale: zhCn,
-    };
-  },
-});
+      locale: zhCn
+    }
+  }
+})
 </script>
 
 <style lang="less">

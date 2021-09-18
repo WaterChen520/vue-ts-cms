@@ -6,10 +6,10 @@
  * @LastEditTime: 2021-09-14 09:16:16
  * @LastEditors: 安知鱼
  */
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-dayjs.extend(utc);
-const DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm:ss";
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
+const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 /**
  * @Description: 格式化utc时间
@@ -21,7 +21,7 @@ export function formatUtcString(
   utcString: string,
   format: string = DATE_TIME_FORMAT
 ) {
-  return dayjs.utc(utcString).utcOffset(8).format(format);
+  return dayjs.utc(utcString).utcOffset(8).format(format)
 }
 
 /**
@@ -34,5 +34,5 @@ export function formatTimestamp(
   timestamp: number,
   format: string = DATE_TIME_FORMAT
 ) {
-  return dayjs.unix(timestamp).format(format);
+  return dayjs.unix(timestamp).format(format)
 }

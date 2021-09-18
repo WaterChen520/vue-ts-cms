@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-09-06 16:59:00
  * @LastEditors: 安知鱼
  */
-import PageSearch from "./src/page-search.vue";
+import PageSearch from './src/page-search.vue'
 
-export default PageSearch;
+export default PageSearch

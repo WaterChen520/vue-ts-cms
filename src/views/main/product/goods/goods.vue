@@ -14,13 +14,13 @@
         >
         </el-image>
       </template>
-      <template #oldPrice="scope"> {{ "¥" + scope.row.oldPrice }} </template>
+      <template #oldPrice="scope"> {{ '¥' + scope.row.oldPrice }} </template>
       <template #status="scope">
         <el-button
           size="mini"
           plain
           :type="scope.row.status ? 'success' : 'danger'"
-          >{{ scope.row.status ? "启用" : "禁用" }}</el-button
+          >{{ scope.row.status ? '启用' : '禁用' }}</el-button
         >
       </template>
     </page-content>
@@ -28,33 +28,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
-import PageSearch from "@/components/page-search";
-import PageContent from "@/components/page-content/index";
+import PageSearch from '@/components/page-search'
+import PageContent from '@/components/page-content/index'
 
-import { contentTableConfig } from "./config/content.config";
-import { searchFormConfig } from "./config/search.config";
+import { contentTableConfig } from './config/content.config'
+import { searchFormConfig } from './config/search.config'
 
-import { usePageSearch } from "@/hooks/use-page-search";
+import { usePageSearch } from '@/hooks/use-page-search'
 export default defineComponent({
-  name: "goods",
+  name: 'goods',
   components: {
     PageSearch,
-    PageContent,
+    PageContent
   },
   setup() {
-    const [pageContentRef, handleResetClick, handleQueryClick] =
-      usePageSearch();
+    const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
     return {
       searchFormConfig,
       contentTableConfig,
       pageContentRef,
       handleResetClick,
-      handleQueryClick,
-    };
-  },
-});
+      handleQueryClick
+    }
+  }
+})
 </script>
 
 <style scoped></style>

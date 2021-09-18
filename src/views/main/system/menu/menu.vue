@@ -10,7 +10,7 @@
           size="mini"
           plain
           :type="scope.row.enable ? 'success' : 'danger'"
-          >{{ scope.row.enable ? "启用" : "禁用" }}</el-button
+          >{{ scope.row.enable ? '启用' : '禁用' }}</el-button
         >
       </template>
     </page-content>
@@ -18,23 +18,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
-import PageContent from "@/components/page-content/index";
+import PageContent from '@/components/page-content/index'
 
-import { contentTableConfig } from "./config/content.config";
+import { contentTableConfig } from './config/content.config'
 
 export default defineComponent({
-  name: "menuManagement",
+  name: 'menuManagement',
   components: {
-    PageContent,
+    PageContent
   },
   setup() {
     return {
-      contentTableConfig,
-    };
-  },
-});
+      contentTableConfig
+    }
+  }
+})
 </script>
 
 <style scoped></style>

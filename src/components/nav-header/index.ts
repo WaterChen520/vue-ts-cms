@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-08-30 17:24:03
  * @LastEditors: 安知鱼
  */
-import NavHeader from "./src/nav-header.vue";
+import NavHeader from './src/nav-header.vue'
 
-export default NavHeader;
+export default NavHeader

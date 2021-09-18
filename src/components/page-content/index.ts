@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-09-10 15:09:12
  * @LastEditors: 安知鱼
  */
-import PageContent from "./src/page-content.vue";
+import PageContent from './src/page-content.vue'
 
-export default PageContent;
+export default PageContent

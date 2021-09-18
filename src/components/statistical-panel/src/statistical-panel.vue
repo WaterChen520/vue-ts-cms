@@ -29,37 +29,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import AnCouterUp from "@/base-ui/count-up";
+import { defineComponent } from 'vue'
+import AnCouterUp from '@/base-ui/count-up'
 
 export default defineComponent({
   components: {
-    AnCouterUp,
+    AnCouterUp
   },
   props: {
     panelData: {
       type: Object,
       default: function () {
-        return {};
-      },
-    },
+        return {}
+      }
+    }
   },
 
   setup() {
     const counterOption1 = {
       decimalPlaces: 0, // 保留两位
-      prefix: "", // 单位
-    };
+      prefix: '' // 单位
+    }
     const counterOption2 = {
       decimalPlaces: 0, // 保留两位
-      prefix: "￥", // 单位
-    };
+      prefix: '￥' // 单位
+    }
     return {
       counterOption1,
-      counterOption2,
-    };
-  },
-});
+      counterOption2
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

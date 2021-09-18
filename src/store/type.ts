@@ -6,27 +6,27 @@
  * @LastEditTime: 2021-09-16 16:54:14
  * @LastEditors: 安知鱼
  */
-import { ILoginState } from "./login/type";
-import { ISystemState } from "./main/system/types";
-import { IDashboardState } from "./main/analysis/types";
+import { ILoginState } from './login/type'
+import { ISystemState } from './main/system/types'
+import { IDashboardState } from './main/analysis/types'
 
 // vue-x根模块类型
 export interface IRootStore {
-  name: string;
-  age: number;
-  isFold: boolean;
-  queryInfo: any;
-  entireDepartment: any[];
-  entireRole: any[];
-  entireMenu: any[];
+  name: string
+  age: number
+  isFold: boolean
+  queryInfo: any
+  entireDepartment: any[]
+  entireRole: any[]
+  entireMenu: any[]
 }
 
 // vue-x中子模块类型
 export interface IRootWithModule {
-  login: ILoginState;
-  system: ISystemState;
-  dashboard: IDashboardState;
+  login: ILoginState
+  system: ISystemState
+  dashboard: IDashboardState
 }
 
 // 自定义的Store类型
-export type IStoreType = IRootStore & IRootWithModule;
+export type IStoreType = IRootStore & IRootWithModule

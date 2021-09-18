@@ -68,65 +68,65 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     listData: {
       type: Array,
-      required: true,
+      required: true
     },
     listCount: {
       type: Number,
-      default: 0,
+      default: 0
     },
     propList: {
       type: Array,
-      required: true,
+      required: true
     },
     showIndexColumn: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showSelectColumn: {
       type: Boolean,
-      default: false,
+      default: false
     },
     page: {
       type: Object,
-      default: () => ({ currentPage: 1, pageSize: 10 }),
+      default: () => ({ currentPage: 1, pageSize: 10 })
     },
     childrenProps: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     showFooter: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
-  emits: ["selectionChange", "update:page"],
+  emits: ['selectionChange', 'update:page'],
   setup(props, { emit }) {
     const handleSelectionChange = (value: any) => {
-      emit("selectionChange", value);
-    };
+      emit('selectionChange', value)
+    }
     const handleCurrentChange = (currentPage: number) => {
-      emit("update:page", { ...props.page, currentPage });
-    };
+      emit('update:page', { ...props.page, currentPage })
+    }
     const handleSizeChange = (pageSize: number) => {
-      emit("update:page", { ...props.page, pageSize });
-    };
+      emit('update:page', { ...props.page, pageSize })
+    }
     return {
       handleSelectionChange,
       handleSizeChange,
-      handleCurrentChange,
-    };
-  },
-});
+      handleCurrentChange
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

@@ -30,75 +30,75 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from "vue";
-import { useStore } from "vuex";
+import { defineComponent, ref, watch } from 'vue'
+import { useStore } from 'vuex'
 
-import AnForm from "@/base-ui/form";
+import AnForm from '@/base-ui/form'
 
 export default defineComponent({
   components: {
-    AnForm,
+    AnForm
   },
   props: {
     modalConfig: {
       type: Object,
-      required: true,
+      required: true
     },
     defaultInfo: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
     pageName: {
       type: String,
-      require: true,
+      require: true
     },
     otherInfo: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   setup(props) {
-    const dialogTitle = ref("标题");
-    const dialogVisible = ref(false);
-    const formData = ref<any>({});
+    const dialogTitle = ref('标题')
+    const dialogVisible = ref(false)
+    const formData = ref<any>({})
 
     watch(
       () => props.defaultInfo,
       (newValue) => {
         for (const item of props.modalConfig.formItems) {
-          formData.value[`${item.field}`] = newValue[`${item.field}`];
+          formData.value[`${item.field}`] = newValue[`${item.field}`]
         }
       }
-    );
+    )
 
     // 点击确定按钮的逻辑
-    const store = useStore();
+    const store = useStore()
     const handleConfirmClick = () => {
-      dialogVisible.value = false;
+      dialogVisible.value = false
       if (Object.keys(props.defaultInfo).length) {
         // 编辑
-        store.dispatch("system/editPageDataAction", {
+        store.dispatch('system/editPageDataAction', {
           pageName: props.pageName,
           editData: { ...formData.value, ...props.otherInfo },
-          id: props.defaultInfo.id,
-        });
+          id: props.defaultInfo.id
+        })
       } else {
         // 新建
-        store.dispatch("system/createPageDataAction", {
+        store.dispatch('system/createPageDataAction', {
           pageName: props.pageName,
-          newData: { ...formData.value, ...props.otherInfo },
-        });
+          newData: { ...formData.value, ...props.otherInfo }
+        })
       }
-    };
+    }
 
     return {
       dialogVisible,
       dialogTitle,
       formData,
-      handleConfirmClick,
-    };
-  },
-});
+      handleConfirmClick
+    }
+  }
+})
 </script>
 
 <style scoped></style>

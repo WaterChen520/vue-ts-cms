@@ -10,39 +10,39 @@
 class Cache {
   setCache(key: string, value: any, isSessionStorage?: boolean) {
     if (isSessionStorage) {
-      window.sessionStorage.setItem(key, JSON.stringify(value));
+      window.sessionStorage.setItem(key, JSON.stringify(value))
     } else {
       // 默认使用localStorage
-      window.localStorage.setItem(key, JSON.stringify(value));
+      window.localStorage.setItem(key, JSON.stringify(value))
     }
   }
 
   getCache(key: string, isSessionStorage?: boolean) {
     if (isSessionStorage) {
-      const value = window.sessionStorage.getItem(key);
+      const value = window.sessionStorage.getItem(key)
       if (value) {
-        return JSON.parse(value);
+        return JSON.parse(value)
       }
     } else {
-      const value = window.localStorage.getItem(key);
+      const value = window.localStorage.getItem(key)
       if (value) {
-        return JSON.parse(value);
+        return JSON.parse(value)
       }
     }
   }
 
   deleteCache(key: string, isSessionStorage?: boolean) {
     if (isSessionStorage) {
-      window.sessionStorage.removeItem(key);
+      window.sessionStorage.removeItem(key)
     } else {
-      window.localStorage.removeItem(key);
+      window.localStorage.removeItem(key)
     }
   }
 
   clearCache() {
-    window.localStorage.clear();
-    window.sessionStorage.clear();
+    window.localStorage.clear()
+    window.sessionStorage.clear()
   }
 }
 
-export default new Cache();
+export default new Cache()

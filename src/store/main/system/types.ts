@@ -7,26 +7,26 @@
  * @LastEditors: 安知鱼
  */
 export interface ISystemState {
-  usersList: any[];
-  usersCount: number;
-  roleList: any[];
-  roleCount: number;
-  goodsList: any[];
-  goodsCount: number;
-  menuList: any[];
-  menuCount: number;
-  departmentCount: number;
-  departmentList: any[];
-  storyCount: number;
-  storyList: any[];
-  categoryCount: number;
-  categoryList: any[];
+  usersList: any[]
+  usersCount: number
+  roleList: any[]
+  roleCount: number
+  goodsList: any[]
+  goodsCount: number
+  menuList: any[]
+  menuCount: number
+  departmentCount: number
+  departmentList: any[]
+  storyCount: number
+  storyList: any[]
+  categoryCount: number
+  categoryList: any[]
 }
 
 export interface IPagePayload {
-  pageName: string;
-  queryInfo: any;
-  newData: any;
-  editData: any;
-  id?: number;
+  pageName: string
+  queryInfo: any
+  newData: any
+  editData: any
+  id?: number
 }

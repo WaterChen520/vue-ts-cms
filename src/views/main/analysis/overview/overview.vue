@@ -32,8 +32,8 @@
           { name: '文件夹', description: '统一小写, 多个单词使用-分割' },
           {
             name: '文件(.ts .vue .json .d.ts)',
-            description: '统一小写, 多个单词使用-分割',
-          },
+            description: '统一小写, 多个单词使用-分割'
+          }
         ]"
       />
       <an-descriptions
@@ -44,35 +44,35 @@
           {
             name: '组件的目录结构',
             description:
-              '例如 button 组件：button/src/index.vue, 统一在button/index.ts导出',
+              '例如 button 组件：button/src/index.vue, 统一在button/index.ts导出'
           },
           {
             name: '组件导包顺序',
             description:
-              '导vue技术栈的包 , 导第三方的工具函数 , 导本地的组件, 导本地的工具函数',
+              '导vue技术栈的包 , 导第三方的工具函数 , 导本地的组件, 导本地的工具函数'
           },
           { name: '组件的名称', description: '统一大写开头，驼峰命名' },
           {
             name: '组件属性顺序',
-            description: 'name, components, props, emits, setup ...',
+            description: 'name, components, props, emits, setup ...'
           },
           {
             name: 'template标签',
-            description: '小写加 - ( 例如：<case-panel/> )',
+            description: '小写加 - ( 例如：<case-panel/> )'
           },
           {
             name: 'template标签属性顺序',
-            description: 'v-if , v-for , ref, class, style, ... ,事件',
+            description: 'v-if , v-for , ref, class, style, ... ,事件'
           },
           {
             name: '组件的props',
-            description: '小写开头，驼峰命名，必须编写类型默认值',
+            description: '小写开头，驼峰命名，必须编写类型默认值'
           },
           {
             name: '组件的样式',
             description:
-              '作用域：scoped, lang = scss / less  ; 类名：统一小写, 多个单词使用-分割',
-          },
+              '作用域：scoped, lang = scss / less  ; 类名：统一小写, 多个单词使用-分割'
+          }
         ]"
       />
     </an-card>
@@ -84,7 +84,7 @@
           { name: 'add 操作', description: 'git add ' },
           { name: 'commit 操作', description: 'yarn commit ' },
           { name: 'pull 操作', description: 'git pull ' },
-          { name: 'push 操作', description: 'git push ' },
+          { name: 'push 操作', description: 'git push ' }
         ]"
       />
     </an-card>
@@ -92,25 +92,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
-import AnDescriptions from "@/base-ui/descriptions";
-import AnTextLink from "@/base-ui/text-link";
-import AnCode from "@/base-ui/code";
-import AnCard from "@/base-ui/card";
+import AnDescriptions from '@/base-ui/descriptions'
+import AnTextLink from '@/base-ui/text-link'
+import AnCode from '@/base-ui/code'
+import AnCard from '@/base-ui/card'
 
 import {
   technologyStacks,
   dependencies,
   devDependencies,
-  projectDir,
-} from "./config";
+  projectDir
+} from './config'
 export default defineComponent({
   components: {
     AnCard,
     AnDescriptions,
     AnTextLink,
-    AnCode,
+    AnCode
   },
 
   setup() {
@@ -118,10 +118,10 @@ export default defineComponent({
       technologyStacks,
       dependencies,
       devDependencies,
-      projectDir,
-    };
-  },
-});
+      projectDir
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

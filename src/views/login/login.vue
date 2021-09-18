@@ -5,17 +5,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import LoginPanel from "./components/login-panel.vue";
+import { defineComponent } from 'vue'
+import LoginPanel from './components/login-panel.vue'
 
 export default defineComponent({
   components: {
-    LoginPanel,
+    LoginPanel
   },
   setup() {
-    return {};
-  },
-});
+    return {}
+  }
+})
 </script>
 
 <style scoped lang="less">
@@ -25,6 +25,6 @@ export default defineComponent({
   align-items: center;
   width: 100%;
   height: 100%;
-  background: url("../../assets/img/login-bg.svg");
+  background: url('../../assets/img/login-bg.svg');
 }
 </style>

@@ -7,8 +7,8 @@
  * @LastEditors: 安知鱼
  */
 
-import AnForm from "./src/form.vue";
+import AnForm from './src/form.vue'
 
-export * from "./types";
+export * from './types'
 
-export default AnForm;
+export default AnForm

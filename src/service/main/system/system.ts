@@ -6,8 +6,8 @@
  * @LastEditTime: 2021-09-14 14:13:13
  * @LastEditors: 安知鱼
  */
-import anRequest from "@/service/index";
-import { IDataType } from "../../types";
+import anRequest from '@/service/index'
+import { IDataType } from '../../types'
 
 /**
  * @Description: 获取数据接口
@@ -20,8 +20,8 @@ import { IDataType } from "../../types";
 export function getPageListData(url: string, queryInfo: any) {
   return anRequest.post<IDataType>({
     url: url,
-    data: queryInfo,
-  });
+    data: queryInfo
+  })
 }
 
 /**
@@ -33,8 +33,8 @@ export function getPageListData(url: string, queryInfo: any) {
  */
 export function deletePageData(url: string) {
   return anRequest.delete<IDataType>({
-    url: url,
-  });
+    url: url
+  })
 }
 
 /**
@@ -48,8 +48,8 @@ export function deletePageData(url: string) {
 export function createPageData(url: string, newData: any) {
   return anRequest.post<IDataType>({
     url: url,
-    data: newData,
-  });
+    data: newData
+  })
 }
 
 /**
@@ -63,6 +63,6 @@ export function createPageData(url: string, newData: any) {
 export function editPageData(url: string, editData: any) {
   return anRequest.patch<IDataType>({
     url: url,
-    data: editData,
-  });
+    data: editData
+  })
 }

@@ -12,27 +12,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
   components: {},
   props: {
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     column: {
       type: Number,
-      default: 1,
+      default: 1
     },
     tableDatas: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   setup() {
-    return {};
-  },
-});
+    return {}
+  }
+})
 </script>
 
 <style scoped>

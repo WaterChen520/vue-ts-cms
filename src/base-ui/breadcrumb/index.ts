@@ -6,8 +6,8 @@
  * @LastEditTime: 2021-09-06 14:44:38
  * @LastEditors: 安知鱼
  */
-import Anbreadcrumb from "./src/breadcrumb.vue";
+import Anbreadcrumb from './src/breadcrumb.vue'
 
-export * from "./types";
+export * from './types'
 
-export default Anbreadcrumb;
+export default Anbreadcrumb

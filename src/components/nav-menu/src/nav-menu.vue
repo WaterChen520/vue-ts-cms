@@ -57,10 +57,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from "vue";
-import { useStore } from "@/store";
-import { useRouter, useRoute } from "vue-router";
-import { pathMapToMenu } from "@/utils/map-menus";
+import { defineComponent, computed, ref } from 'vue'
+import { useStore } from '@/store'
+import { useRouter, useRoute } from 'vue-router'
+import { pathMapToMenu } from '@/utils/map-menus'
 
 // vuex - typescript  => pinia
 
@@ -68,39 +68,39 @@ export default defineComponent({
   props: {
     collapse: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   setup() {
     // store
-    const store = useStore();
-    const userMenus = computed(() => store.state.login.userMenus);
+    const store = useStore()
+    const userMenus = computed(() => store.state.login.userMenus)
 
     // router
-    const router = useRouter();
-    const route = useRoute();
-    const currentPath = route.path;
+    const router = useRouter()
+    const route = useRoute()
+    const currentPath = route.path
 
     // data
-    const menu = pathMapToMenu(userMenus.value, currentPath);
-    const defaultValue = ref(menu.id + "");
+    const menu = pathMapToMenu(userMenus.value, currentPath)
+    const defaultValue = ref(menu.id + '')
 
     // event handle
     const handleMenuItemClick = (item: any) => {
       router.push({
-        path: item.url ?? "/not-found",
-      });
-    };
+        path: item.url ?? '/not-found'
+      })
+    }
 
     // console.log(userMenus);
 
     return {
       defaultValue,
       userMenus,
-      handleMenuItemClick,
-    };
-  },
-});
+      handleMenuItemClick
+    }
+  }
+})
 </script>
 
 <style scoped lang="less">

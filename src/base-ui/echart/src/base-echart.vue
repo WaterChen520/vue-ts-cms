@@ -24,50 +24,50 @@ import {
   watchEffect,
   watch,
   computed,
-  onBeforeUnmount,
-} from "vue";
-import { EChartsOption } from "echarts";
-import useEchart from "../hooks/useEcharts";
-import { useStore } from "@/store";
+  onBeforeUnmount
+} from 'vue'
+import { EChartsOption } from 'echarts'
+import useEchart from '../hooks/useEcharts'
+import { useStore } from '@/store'
 
 // 定义props,使用泛型定义Props的类型
 const props = withDefaults(
   defineProps<{
-    options: EChartsOption;
-    echartWidth?: string;
-    echartHeight?: string;
+    options: EChartsOption
+    echartWidth?: string
+    echartHeight?: string
   }>(),
   {
-    echartWidth: "100%",
-    echartHeight: "360px",
+    echartWidth: '100%',
+    echartHeight: '360px'
   }
-);
-const store = useStore();
+)
+const store = useStore()
 
-const echartDivRef = ref<HTMLElement>();
-const isFold: any = computed(() => store.state.isFold);
+const echartDivRef = ref<HTMLElement>()
+const isFold: any = computed(() => store.state.isFold)
 
-let timer: any;
+let timer: any
 onMounted(() => {
-  const { setOptions, updateSize } = useEchart(echartDivRef.value!);
+  const { setOptions, updateSize } = useEchart(echartDivRef.value!)
   watchEffect(() => {
-    setOptions(props.options);
-  });
+    setOptions(props.options)
+  })
   watch(isFold, () => {
-    let i = 0;
+    let i = 0
     timer = setInterval(() => {
-      i++;
+      i++
       if (i === 10) {
-        clearInterval(timer);
+        clearInterval(timer)
       }
-      updateSize();
-    }, 10);
-  });
-});
+      updateSize()
+    }, 10)
+  })
+})
 onBeforeUnmount(() => {
-  clearInterval(timer);
-  timer = null;
-});
+  clearInterval(timer)
+  timer = null
+})
 </script>
 
 <style scoped></style>

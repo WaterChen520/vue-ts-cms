@@ -43,7 +43,7 @@
       <!-- 2.列中的插槽 -->
       <template #createAt="scope">
         <span>{{
-          $filters.formatTimeUtc(scope.row.createAt, "YYYY-MM-DD HH:mm:ss")
+          $filters.formatTimeUtc(scope.row.createAt, 'YYYY-MM-DD HH:mm:ss')
         }}</span>
       </template>
       <template #updateAt="scope">
@@ -84,111 +84,111 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch, reactive } from "vue";
-import { useStore } from "@/store";
-import { usePermission } from "@/hooks/use-permissions";
+import { defineComponent, computed, ref, watch, reactive } from 'vue'
+import { useStore } from '@/store'
+import { usePermission } from '@/hooks/use-permissions'
 
-import { ElMessage } from "element-plus";
-import { ElMessageBox } from "element-plus";
-import AnTable from "@/base-ui/table";
+import { ElMessage } from 'element-plus'
+import { ElMessageBox } from 'element-plus'
+import AnTable from '@/base-ui/table'
 
 export default defineComponent({
   components: {
-    AnTable,
+    AnTable
   },
   props: {
     contentTableConfig: {
       type: Object,
-      required: true,
+      required: true
     },
     pageName: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
-  emits: ["newBtnClick", "editBtnClick"],
+  emits: ['newBtnClick', 'editBtnClick'],
   setup(props, { emit }) {
-    const store = useStore();
+    const store = useStore()
     // 获取操作的id集合
-    let selectionsIds: any = reactive([]);
+    let selectionsIds: any = reactive([])
     const selectionChange = (value: any) => {
-      selectionsIds = [];
+      selectionsIds = []
       for (const key of value) {
-        selectionsIds.push(key.id);
+        selectionsIds.push(key.id)
       }
-    };
+    }
 
     // 1. 获取操作权限
-    const isCreate = usePermission(props.pageName, "create");
-    const isUpdate = usePermission(props.pageName, "update");
-    const isDelete = usePermission(props.pageName, "delete");
-    const isQuery = usePermission(props.pageName, "query");
+    const isCreate = usePermission(props.pageName, 'create')
+    const isUpdate = usePermission(props.pageName, 'update')
+    const isDelete = usePermission(props.pageName, 'delete')
+    const isQuery = usePermission(props.pageName, 'query')
 
     // 2.双向绑定pageInfo
-    const pageInfo = ref({ currentPage: 1, pageSize: 10 });
-    watch(pageInfo, () => getPageData());
+    const pageInfo = ref({ currentPage: 1, pageSize: 10 })
+    watch(pageInfo, () => getPageData())
 
     // 3.发送网络请求
     const getPageData = (queryInfo: any = {}) => {
-      if (!isQuery) return;
-      store.dispatch("system/getPageListAction", {
+      if (!isQuery) return
+      store.dispatch('system/getPageListAction', {
         pageName: props.pageName,
         queryInfo: {
           offset: (pageInfo.value.currentPage - 1) * pageInfo.value.pageSize,
           size: pageInfo.value.pageSize,
-          ...queryInfo,
-        },
-      });
-    };
-    getPageData();
+          ...queryInfo
+        }
+      })
+    }
+    getPageData()
 
     // 4.从vuex中获取数据
     const dataList = computed(() =>
       store.getters[`system/pageListData`](props.pageName)
-    );
+    )
     const dataCount = computed(() =>
       store.getters[`system/pageListCount`](props.pageName)
-    );
+    )
 
     // 5.获取其他的动态插槽名称
     const otherPropSlots = props.contentTableConfig?.propList.filter(
       (item: any) => {
-        if (item.slotName === "createAt") return false;
-        if (item.slotName === "updateAt") return false;
-        if (item.slotName === "handler") return false;
-        return true;
+        if (item.slotName === 'createAt') return false
+        if (item.slotName === 'updateAt') return false
+        if (item.slotName === 'handler') return false
+        return true
       }
-    );
+    )
 
     // 6.删除/编辑/新建操作
     const handleDeleteClick = (itemId: number) => {
       if (!itemId && selectionsIds.length === 0) {
-        ElMessage.error("请先选择需要删除的数据！");
-        return;
+        ElMessage.error('请先选择需要删除的数据！')
+        return
       }
-      ElMessageBox.confirm("将删除该数据, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning",
+      ElMessageBox.confirm('将删除该数据, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          let deleteIds = itemId ?? selectionsIds;
-          console.log(deleteIds);
-          store.dispatch("system/deletePageDataAction", {
+          let deleteIds = itemId ?? selectionsIds
+          console.log(deleteIds)
+          store.dispatch('system/deletePageDataAction', {
             pageName: props.pageName,
-            id: deleteIds,
-          });
+            id: deleteIds
+          })
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err)
           ElMessage({
-            type: "info",
-            message: "已取消删除",
-          });
-        });
-    };
-    const handleNewClick = () => emit("newBtnClick");
-    const handleEditClick = (item: any) => emit("editBtnClick", item);
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    }
+    const handleNewClick = () => emit('newBtnClick')
+    const handleEditClick = (item: any) => emit('editBtnClick', item)
 
     return {
       selectionsIds,
@@ -203,10 +203,10 @@ export default defineComponent({
       handleNewClick,
       handleEditClick,
       selectionChange,
-      getPageData,
-    };
-  },
-});
+      getPageData
+    }
+  }
+})
 </script>
 
 <style scoped>

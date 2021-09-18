@@ -8,6 +8,6 @@
  */
 
 export interface IBreadcrumb {
-  name: string;
-  path?: string;
+  name: string
+  path?: string
 }

@@ -10,21 +10,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
     textArrs: {
       type: Array,
 
-      default: () => [],
-    },
+      default: () => []
+    }
   },
 
   setup() {
-    return {};
-  },
-});
+    return {}
+  }
+})
 </script>
 
 <style scoped lang="less">
@@ -51,7 +51,7 @@ export default defineComponent({
     height: 5px;
     background: black;
     border-radius: 100%;
-    content: "";
+    content: '';
   }
 }
 </style>

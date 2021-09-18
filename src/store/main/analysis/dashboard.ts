@@ -6,18 +6,18 @@
  * @LastEditTime: 2021-09-16 15:52:45
  * @LastEditors: 安知鱼
  */
-import { Module } from "vuex";
+import { Module } from 'vuex'
 
-import { IDashboardState } from "./types";
-import { IRootStore } from "../../type";
+import { IDashboardState } from './types'
+import { IRootStore } from '../../type'
 
 import {
   getAmountList,
   getCategoryGoodsCount,
   getCategoryGoodsSale,
   getCategoryGoodsFavor,
-  getAddressGoodsSale,
-} from "@/service/main/analysis/dashboard";
+  getAddressGoodsSale
+} from '@/service/main/analysis/dashboard'
 
 const dashboardModule: Module<IDashboardState, IRootStore> = {
   namespaced: true,
@@ -27,44 +27,44 @@ const dashboardModule: Module<IDashboardState, IRootStore> = {
       categoryGoodsCount: [],
       categoryGoodsSale: [],
       categoryGoodsFavor: [],
-      addressGoodsSale: [],
-    };
+      addressGoodsSale: []
+    }
   },
   mutations: {
     changeTopPanelDatas(state, list) {
-      state.topPanelDatas = list;
+      state.topPanelDatas = list
     },
     changeCategoryGoodsCount(state, categoryGoodsCount) {
-      state.categoryGoodsCount = categoryGoodsCount;
+      state.categoryGoodsCount = categoryGoodsCount
     },
     changeCategoryGoodsSale(state, categoryGoodsSale) {
-      state.categoryGoodsSale = categoryGoodsSale;
+      state.categoryGoodsSale = categoryGoodsSale
     },
     changeCategoryGoodsFavor(state, categoryGoodsFavor) {
-      state.categoryGoodsFavor = categoryGoodsFavor;
+      state.categoryGoodsFavor = categoryGoodsFavor
     },
     changeAddressGoodsSale(state, addressGoodsSale) {
-      state.addressGoodsSale = addressGoodsSale;
-    },
+      state.addressGoodsSale = addressGoodsSale
+    }
   },
   actions: {
     async getDashboardDataAction({ commit }) {
-      const resultTopPanelDatas = await getAmountList();
-      commit("changeTopPanelDatas", resultTopPanelDatas);
+      const resultTopPanelDatas = await getAmountList()
+      commit('changeTopPanelDatas', resultTopPanelDatas)
 
-      const categoryGoodsCountResult = await getCategoryGoodsCount();
-      commit("changeCategoryGoodsCount", categoryGoodsCountResult.data);
+      const categoryGoodsCountResult = await getCategoryGoodsCount()
+      commit('changeCategoryGoodsCount', categoryGoodsCountResult.data)
 
-      const categoryGoodsSaleResult = await getCategoryGoodsSale();
-      commit("changeCategoryGoodsSale", categoryGoodsSaleResult.data);
+      const categoryGoodsSaleResult = await getCategoryGoodsSale()
+      commit('changeCategoryGoodsSale', categoryGoodsSaleResult.data)
 
-      const categoryGoodsFavorResult = await getCategoryGoodsFavor();
-      commit("changeCategoryGoodsFavor", categoryGoodsFavorResult.data);
+      const categoryGoodsFavorResult = await getCategoryGoodsFavor()
+      commit('changeCategoryGoodsFavor', categoryGoodsFavorResult.data)
 
-      const addressGoodsSaleResult = await getAddressGoodsSale();
-      commit("changeAddressGoodsSale", addressGoodsSaleResult.data);
-    },
-  },
-};
+      const addressGoodsSaleResult = await getAddressGoodsSale()
+      commit('changeAddressGoodsSale', addressGoodsSaleResult.data)
+    }
+  }
+}
 
-export default dashboardModule;
+export default dashboardModule

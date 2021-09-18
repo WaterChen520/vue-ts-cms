@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-09-13 13:12:59
  * @LastEditors: 安知鱼
  */
-import PageModal from "./src/page-modal.vue";
+import PageModal from './src/page-modal.vue'
 
-export default PageModal;
+export default PageModal

@@ -1,2 +1,2 @@
-import AnCode from "./src/code.vue";
-export default AnCode;
+import AnCode from './src/code.vue'
+export default AnCode

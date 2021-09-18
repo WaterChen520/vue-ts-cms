@@ -1,3 +1,3 @@
-import AnEditor from "./src/index.vue";
+import AnEditor from './src/index.vue'
 
-export default AnEditor;
+export default AnEditor

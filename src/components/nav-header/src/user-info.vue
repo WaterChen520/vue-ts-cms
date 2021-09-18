@@ -24,27 +24,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
-import { useStore } from "@/store";
-import cache from "@/utils/cache";
-import { useRouter } from "vue-router";
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
+import cache from '@/utils/cache'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
-    const store = useStore();
-    const router = useRouter();
-    const name = computed(() => store.state.login.userInfo.name);
+    const store = useStore()
+    const router = useRouter()
+    const name = computed(() => store.state.login.userInfo.name)
     const handleExitClick = () => {
-      cache.clearCache();
-      router.push("/login");
-    };
+      cache.clearCache()
+      router.push('/login')
+    }
 
     return {
       name,
-      handleExitClick,
-    };
-  },
-});
+      handleExitClick
+    }
+  }
+})
 </script>
 
 <style scoped>

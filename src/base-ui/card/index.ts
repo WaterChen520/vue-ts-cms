@@ -1,3 +1,3 @@
-import AnCard from "./src/card.vue";
+import AnCard from './src/card.vue'
 
-export default AnCard;
+export default AnCard

@@ -7,28 +7,28 @@
  * @LastEditors: 安知鱼
  */
 
-import * as echarts from "echarts";
+import * as echarts from 'echarts'
 
-import ChinaMapData from "../data/china.json";
+import ChinaMapData from '../data/china.json'
 
-echarts.registerMap("china", ChinaMapData);
+echarts.registerMap('china', ChinaMapData)
 
-export default function (el: HTMLElement, theme = "light") {
-  const echartInstance = echarts.init(el, theme, { renderer: "svg" });
+export default function (el: HTMLElement, theme = 'light') {
+  const echartInstance = echarts.init(el, theme, { renderer: 'svg' })
   const setOptions = (options: echarts.EChartsOption) => {
-    echartInstance.setOption(options);
-  };
+    echartInstance.setOption(options)
+  }
   const updateSize = () => {
-    echartInstance.resize();
-  };
+    echartInstance.resize()
+  }
 
-  window.addEventListener("resize", () => {
-    echartInstance.resize();
-  });
+  window.addEventListener('resize', () => {
+    echartInstance.resize()
+  })
 
   return {
     echartInstance,
     setOptions,
-    updateSize,
-  };
+    updateSize
+  }
 }

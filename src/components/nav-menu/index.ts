@@ -6,6 +6,6 @@
  * @LastEditTime: 2021-08-30 17:21:18
  * @LastEditors: 安知鱼
  */
-import NavMenu from "./src/nav-menu.vue";
+import NavMenu from './src/nav-menu.vue'
 
-export default NavMenu;
+export default NavMenu

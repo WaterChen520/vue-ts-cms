@@ -8,6 +8,6 @@
  */
 
 export interface IDataType {
-  naem: string;
-  value: any;
+  naem: string
+  value: any
 }

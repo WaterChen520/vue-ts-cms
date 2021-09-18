@@ -6,15 +6,15 @@
  * @LastEditTime: 2021-09-14 14:19:56
  * @LastEditors: 安知鱼
  */
-import anRequest from "../index";
+import anRequest from '../index'
 
-import { IAccount, ILoginResult } from "./type";
-import { IDataType } from "../types";
+import { IAccount, ILoginResult } from './type'
+import { IDataType } from '../types'
 
 enum LoginAPI {
-  AccountLogin = "/login",
-  LoginUserInfo = "/users/",
-  UserMenus = "/role/",
+  AccountLogin = '/login',
+  LoginUserInfo = '/users/',
+  UserMenus = '/role/'
 }
 
 /**
@@ -28,8 +28,8 @@ export function accountLoginRequest(account: IAccount) {
   return anRequest.post<IDataType<ILoginResult>>({
     url: LoginAPI.AccountLogin,
     data: account,
-    showLoading: true,
-  });
+    showLoading: true
+  })
 }
 
 /**
@@ -41,8 +41,8 @@ export function accountLoginRequest(account: IAccount) {
  */
 export function requestUserInfoById(id: number) {
   return anRequest.get<IDataType>({
-    url: LoginAPI.LoginUserInfo + id,
-  });
+    url: LoginAPI.LoginUserInfo + id
+  })
 }
 
 /**
@@ -54,6 +54,6 @@ export function requestUserInfoById(id: number) {
  */
 export function requestUserMenusById(id: number) {
   return anRequest.get<IDataType>({
-    url: LoginAPI.UserMenus + id + "/menu",
-  });
+    url: LoginAPI.UserMenus + id + '/menu'
+  })
 }

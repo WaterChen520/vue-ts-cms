@@ -3,7 +3,7 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-14 17:26:11
- * @LastEditTime: 2021-09-16 14:51:32
+ * @LastEditTime: 2021-09-19 18:27:46
  * @LastEditors: 安知鱼
 -->
 <template>
@@ -54,18 +54,23 @@ onMounted(() => {
     setOptions(props.options)
   })
   watch(isFold, () => {
-    let i = 0
-    timer = setInterval(() => {
-      i++
-      if (i === 10) {
-        clearInterval(timer)
+    let t = 10
+    function reEchartSize() {
+      if (t <= 0) {
+        clearTimeout(timer)
+        return
       }
+      t--
       updateSize()
-    }, 10)
+      timer = setTimeout(() => {
+        return reEchartSize()
+      }, 100)
+    }
+    reEchartSize()
   })
 })
 onBeforeUnmount(() => {
-  clearInterval(timer)
+  clearTimeout(timer)
   timer = null
 })
 </script>

@@ -3,13 +3,13 @@
  * @Author: 安知鱼
  * @Email: 2268025923@qq.com
  * @Date: 2021-09-06 16:59:13
- * @LastEditTime: 2021-09-13 14:43:41
+ * @LastEditTime: 2021-09-20 09:50:44
  * @LastEditors: 安知鱼
 -->
 <template>
   <div class="page-search">
     <el-card shadow="hover">
-      <AnForm v-bind="searchFormConfig" v-model="formData" ref="anForm">
+      <an-form v-bind="searchFormConfig" v-model="formData" ref="anForm">
         <template #header>
           <h2>高级检索</h2>
         </template>
@@ -26,7 +26,7 @@
             >
           </div>
         </template>
-      </AnForm>
+      </an-form>
     </el-card>
   </div>
 </template>
